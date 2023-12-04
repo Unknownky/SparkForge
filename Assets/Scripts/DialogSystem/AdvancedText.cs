@@ -5,16 +5,19 @@ using TMPro;
 using System.Text.RegularExpressions;
 
 /// <summary>
-/// 文本预处理器接口，进行自定义的文本预处理，并且保存相关的数据
+/// 文本预处理器接口，进行自定义的文本预处理，并且保存所有标签的数据
 /// </summary>
 public class AdvancedTextPreprocessor : ITextPreprocessor
 {
-    public Dictionary<int, float> IntervalDictionary;//存储间隔时间的字典，key为索引，value为间隔时间，用于打字机效果
+    /// <summary>
+    /// 用于存储所有标签的数据
+    /// </summary>
+    public Dictionary<int, List<string>> LabelDictionary;//存储间隔时间的字典，key为索引，value为多标签
 
 
     public AdvancedTextPreprocessor()//构造函数，初始化字典
     {
-        IntervalDictionary = new Dictionary<int, float>();
+        LabelDictionary = new Dictionary<int, List<string>>();
     }
 
     /// <summary>
@@ -24,37 +27,63 @@ public class AdvancedTextPreprocessor : ITextPreprocessor
     /// <returns></returns>
     public string PreprocessText(string text)
     {
-        IntervalDictionary.Clear();//清空字典，防止重复添加
+        LabelDictionary.Clear();//清空字典，防止重复添加
 
         //第一次正则匹配，匹配出所有的间隔时间标签，并且将其存入字典
         string processingText = text;//要处理的文本
         string pattern = "<.*?>";//匹配标签的正则表达式  .表示任意字符 *表示0个或多个 ?表示非贪婪模式(即尽可能少的匹配)
         Match match = Regex.Match(processingText, pattern);//正则匹配规则
+        
+
         while (match.Success)//如果匹配成功
         {
             string matchValue = match.Value;//匹配到的值
             int matchIndex = match.Index;//匹配到的索引
             int matchLength = match.Length;//匹配到的长度
             string label = matchValue.Substring(1, matchLength - 2);//标签名
-            if (float.TryParse(label, out float result))
+            if (label != "")
             {
-                IntervalDictionary[matchIndex - 1] = result;
-                Debug.Log(matchIndex - 1 + "  " + result);
+                if(LabelDictionary.ContainsKey(matchIndex - 1) == false)//如果字典中没有当前索引的key，则创建一个list<string>
+                {
+                    LabelDictionary.Add(matchIndex - 1, new List<string>());
+                }
+                LabelDictionary[matchIndex - 1].Add(label);//将当前索引的标签添加到字典中
+                #if UNITY_EDITOR
+                Debug.Log(matchIndex - 1);
+                foreach (var item in LabelDictionary[matchIndex - 1])
+                {
+                    Debug.Log(item);
+                }
+                #endif
             }
 
             //处理完当前标签后，移除当前标签，重新匹配
             processingText = processingText.Remove(matchIndex, matchLength);//移除匹配到的标签
             match = Regex.Match(processingText, pattern);//重新匹配
         }
+        //完成了字典的赋值
 
-        
+#if UNITY_EDITOR
+        Debug.Log("The Label count is:"+LabelDictionary.Count);
+        foreach (var item in LabelDictionary)
+        {
+            Debug.Log(item.Key + "  " + item.Value);
+        }
+        #endif
+
+
         //第二次正则匹配，匹配出特定的标签，并且将其替换为interval
         processingText = text;
-        pattern = @"<(\d+)(\.\d+)?>"; //匹配标签的正则表达式  .表示任意字符 *表示0个或多个 ?表示非贪婪模式(即尽可能少的匹配)
-        processingText = Regex.Replace(processingText, pattern, "interval");//利用正则表达式移除匹配到的标签
-
+        // pattern = @"<(\d+)(\.\d+)?>"; //匹配标签的正则表达式  .表示任意字符 *表示0个或多个 ?表示非贪婪模式(即尽可能少的匹配)
+        pattern = @"<.*?>";
+        #if UNITY_EDITOR
+            processingText = Regex.Replace(processingText, pattern, "interval");//利用正则表达式移除匹配到的标签
+        #else
+        {
+            processingText = Regex.Replace(processingText, pattern, "");//利用正则表达式移除匹配到的标签
+        }
+        #endif
         return processingText;//返回处理后的文本，作为当前脚本的文本
-
     }
 }
 
@@ -105,14 +134,16 @@ public class AdvancedText : TextMeshProUGUI
                 // SetSingleCharacterAlpha(_typingIndex, 255);
                 StartCoroutine(FadeInCharacter(_typingIndex));//通过协程渐变设置透明度
             }
-            if (SelfPreprocessor.IntervalDictionary.TryGetValue(_typingIndex, out float result)) //通过索引获取到对应的间隔时间
-            { //如果当前索引有对应的间隔时间格式为<1>，则等待对应的时间
-                yield return new WaitForSecondsRealtime(result);//yield return 跳不出循环，只是暂停当前协程，等待固定时间后继续执行
-            }
-            else
-            {
-                yield return new WaitForSecondsRealtime(_defaultInterval); //否则默认间隔0.1秒
-            }
+            // if (SelfPreprocessor.LabelDictionary.TryGetValue(_typingIndex, out float result)) //通过索引获取到对应的间隔时间
+            // { //如果当前索引有对应的间隔时间格式为<1>，则等待对应的时间
+            //     yield return new WaitForSecondsRealtime(result);//yield return 跳不出循环，只是暂停当前协程，等待固定时间后继续执行
+            // }
+            // else
+            // {
+            //     yield return new WaitForSecondsRealtime(_defaultInterval); //否则默认间隔0.1秒
+            // }
+
+            yield return new WaitForSecondsRealtime(_defaultInterval);
             _typingIndex++;
         }
 
