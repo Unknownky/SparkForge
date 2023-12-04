@@ -33,7 +33,7 @@ public class AdvancedTextPreprocessor : ITextPreprocessor
         string processingText = text;//要处理的文本
         string pattern = "<.*?>";//匹配标签的正则表达式  .表示任意字符 *表示0个或多个 ?表示非贪婪模式(即尽可能少的匹配)
         Match match = Regex.Match(processingText, pattern);//正则匹配规则
-        
+
 
         while (match.Success)//如果匹配成功
         {
@@ -43,18 +43,18 @@ public class AdvancedTextPreprocessor : ITextPreprocessor
             string label = matchValue.Substring(1, matchLength - 2);//标签名
             if (label != "")
             {
-                if(LabelDictionary.ContainsKey(matchIndex - 1) == false)//如果字典中没有当前索引的key，则创建一个list<string>
+                if (LabelDictionary.ContainsKey(matchIndex - 1) == false)//如果字典中没有当前索引的key，则创建一个list<string>
                 {
                     LabelDictionary.Add(matchIndex - 1, new List<string>());
                 }
                 LabelDictionary[matchIndex - 1].Add(label);//将当前索引的标签添加到字典中
-                #if UNITY_EDITOR
+#if UNITY_EDITOR
                 Debug.Log(matchIndex - 1);
                 foreach (var item in LabelDictionary[matchIndex - 1])
                 {
                     Debug.Log(item);
                 }
-                #endif
+#endif
             }
 
             //处理完当前标签后，移除当前标签，重新匹配
@@ -64,25 +64,25 @@ public class AdvancedTextPreprocessor : ITextPreprocessor
         //完成了字典的赋值
 
 #if UNITY_EDITOR
-        Debug.Log("The Label count is:"+LabelDictionary.Count);
+        Debug.Log("The Label count is:" + LabelDictionary.Count);
         foreach (var item in LabelDictionary)
         {
             Debug.Log(item.Key + "  " + item.Value);
         }
-        #endif
+#endif
 
 
         //第二次正则匹配，匹配出特定的标签，并且将其替换为interval
         processingText = text;
         // pattern = @"<(\d+)(\.\d+)?>"; //匹配标签的正则表达式  .表示任意字符 *表示0个或多个 ?表示非贪婪模式(即尽可能少的匹配)
         pattern = @"<.*?>";
-        #if UNITY_EDITOR
-            processingText = Regex.Replace(processingText, pattern, "interval");//利用正则表达式移除匹配到的标签
-        #else
+#if UNITY_EDITOR
+        processingText = Regex.Replace(processingText, pattern, "");//利用正则表达式移除匹配到的标签
+#else
         {
             processingText = Regex.Replace(processingText, pattern, "");//利用正则表达式移除匹配到的标签
         }
-        #endif
+#endif
         return processingText;//返回处理后的文本，作为当前脚本的文本
     }
 }
@@ -97,7 +97,10 @@ public class AdvancedText : TextMeshProUGUI
 
     private int _typingIndex = 0; //打字机索引
 
-    private float _defaultInterval = 0.2f; //默认间隔时间
+    private float _defaultInterval = 0.1f; //默认间隔时间
+
+    private float _interval; //间隔时间
+
     private AdvancedTextPreprocessor SelfPreprocessor => (AdvancedTextPreprocessor)textPreprocessor; //根据接口获取自定义的文本预处理器
 
     public AdvancedText()
@@ -112,11 +115,11 @@ public class AdvancedText : TextMeshProUGUI
     public void ShowTextByTyping(string content)
     {
         SetText(content); //内置的SetText方法，会设置文本内容, 并且会调用预处理器的预处理方法，将处理后的文本作为当前文本
-        StartCoroutine(Typing());
+        StartCoroutine(TypingSequence());
     }
 
     //一个协程，用于实现打字机效果(协程按照顺序执行，只是添加了等待的过程，并且可以在等待的过程中执行其他的协程，互不影响)
-    IEnumerator Typing()
+    IEnumerator TypingSequence()
     {
 
         ForceMeshUpdate(); //强制更新顶点信息
@@ -126,31 +129,114 @@ public class AdvancedText : TextMeshProUGUI
         }
 
         _typingIndex = 0;
+
+        //以下代码按照字符的顺序类似于字符的TimeLine
         while (_typingIndex < m_characterCount)//遍历所有字符,将透明度通过协程渐变设置为255,即显示
         {
             //如果当前字符可见,则设置透明度,用于修复空格的bug
-            if(textInfo.characterInfo[_typingIndex].isVisible)
+            if (textInfo.characterInfo[_typingIndex].isVisible)
             {
                 // SetSingleCharacterAlpha(_typingIndex, 255);
                 StartCoroutine(FadeInCharacter(_typingIndex));//通过协程渐变设置透明度
             }
-            // if (SelfPreprocessor.LabelDictionary.TryGetValue(_typingIndex, out float result)) //通过索引获取到对应的间隔时间
-            // { //如果当前索引有对应的间隔时间格式为<1>，则等待对应的时间
-            //     yield return new WaitForSecondsRealtime(result);//yield return 跳不出循环，只是暂停当前协程，等待固定时间后继续执行
-            // }
-            // else
-            // {
-            //     yield return new WaitForSecondsRealtime(_defaultInterval); //否则默认间隔0.1秒
-            // }
 
-            yield return new WaitForSecondsRealtime(_defaultInterval);
+            //在这里添加标签事件逻辑
+            SequenceEventTriger(_typingIndex);//标签事件逻辑
+
+
+
+            yield return new WaitForSecondsRealtime(_interval);
+
             _typingIndex++;
         }
 
     }
 
+    public void SequenceEventTriger(int index)
+    {
+
+        //如果当前索引有对应的标签事件，则触发对应的标签事件
+        if (SelfPreprocessor.LabelDictionary.ContainsKey(index))
+        {
+            foreach (var label in SelfPreprocessor.LabelDictionary[index])
+            {
+                //获取需要间隔的时间
+                string pattern = @"<(\d+)(\.\d+)?>";
+                Match match = Regex.Match(label, pattern);//正则匹配规则
+                if (match.Success)
+                {
+                    _interval = float.Parse(match.Value.Substring(1, match.Length - 2));
+#if UNITY_EDITOR
+                    Debug.Log("经过标签处理的间隔时间为：" + _interval);
+#endif
+                    continue;
+                }
+                _interval = _defaultInterval;
+
+                //触发标签事件
+                CallbackLabelEventHandler(label);
+            }
+
+        }
+    }
+
+    /// <summary>
+    /// 标签事件回调函数，之后添加标签事件增加对应的case即可
+    /// </summary>
+    /// <param name="label"></param>
+    private void CallbackLabelEventHandler(string label)
+    {
+        switch (label)
+        {
+            case LabelContainer.break_L:
+#if UNITY_EDITOR
+                Debug.Log("触发了标签事件break");
+#endif
+                StartCoroutine(BreakInvoke());
+                break;
+            case LabelContainer.rain_L:
+#if UNITY_EDITOR
+                Debug.Log("触发了标签事件rain");
+#endif
+                RainInvoke();
+                break;
+            case LabelContainer.finish_L:
+#if UNITY_EDITOR
+                Debug.Log("触发了标签事件finish");
+#endif
+                StartCoroutine(FinishInvoke());
+                break;
+            default:
+                break;
+        }
+    }
+
+    #region 标签事件函数
+    IEnumerator BreakInvoke(){
+        while(!Input.GetMouseButtonDown(0)){
+            yield return null;
+        }
+        TextManager.Instance.SetTextEmpty();//清空文本
+        TextManager.Instance.ShowFirstSentence();//显示下一句话
+    }
+
+    private void RainInvoke(){
+        TextManager.Instance._background.GetComponent<SpriteRenderer>().sprite = TextManager.Instance._Rainbackground;
+    }
+
+    IEnumerator FinishInvoke(){
+        while(!Input.GetMouseButtonDown(0)){
+            yield return null;
+        }
+        TextManager.Instance.SetTextEmpty();//清空文本
+        TextManager.Instance.EndDialogueSystem();//结束对话系统
+    }
+
+    #endregion
+
+
     //一个协程，用于实现渐变效果
-    IEnumerator FadeInCharacter(int index, float duration = 0.5f)
+    IEnumerator FadeInCharacter(int index, float duration = 0.2f)
     {
         if (duration <= 0)
         {
@@ -184,4 +270,11 @@ public class AdvancedText : TextMeshProUGUI
     }
 
 
+}
+
+public static class LabelContainer
+{
+    public const string break_L = "break";
+    public const string rain_L = "rain";
+    public const string finish_L = "finish";
 }

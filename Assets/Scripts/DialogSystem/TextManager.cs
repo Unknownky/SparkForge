@@ -19,18 +19,22 @@ public class TextManager : MonoBehaviour
     /// </summary>
     public List<string> result { get; private set;}
 
+    [SerializeField]public GameObject _background;//背景图片
+    [SerializeField]public Sprite _Sunbackground;//背景图片
+    [SerializeField]public Sprite _Rainbackground;//背景图片
+
 
 #if UNITY_EDITOR
-    [Multiline]
-    [SerializeField] private string text;//测试用文本
+    // [Multiline]
+    // [SerializeField] private string text;//测试用文本
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            AccordTextProduceResult(text);
-        }
-    }
+    // private void Update()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.Space))
+    //     {
+    //         AccordTextProduceResult(text);
+    //     }
+    // }
 #endif
 
     private void Awake()
@@ -66,6 +70,9 @@ public class TextManager : MonoBehaviour
         result.Clear();//清空结果
     }
 
+    public void SetTextEmpty(){
+        _text.SetText("");
+    }
 
     /// <summary>
     /// 显示第一句话,并将其从result中移除
