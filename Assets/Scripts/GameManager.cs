@@ -7,6 +7,16 @@ using UnityEngine;
 /// </summary>
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(this);
+    }
+
 
     private void Update()
     {
@@ -24,4 +34,35 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    #region 时间触发函数
+    public static void LoadScene(string sceneName)
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+    }   
+
+    public static void QuitGame()
+    {
+        #if UNITY_EDITOR
+        Debug.Log("退出游戏");
+        #endif
+
+        // Application.Quit();
+    }
+
+
+
+    public static void StartDialogue(string dialogue)
+    {
+        TextManager.Instance.StartDialogueSystem(dialogue);
+    }
+
+    /// <summary>
+    /// 打开设置
+    /// </summary>
+    public static void EnableSetting(){
+        Debug.Log("打开设置");
+
+    }
+    #endregion
 }
