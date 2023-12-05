@@ -217,7 +217,7 @@ public class AdvancedText : TextMeshProUGUI
             yield return null;
         }
         TextManager.Instance.SetTextEmpty();//清空文本
-        TextManager.Instance.ShowFirstSentence();//显示下一句话
+        TextManager.Instance.ShowNameAndFirstSentence();//显示下一句话
     }
 
     private void RainInvoke(){

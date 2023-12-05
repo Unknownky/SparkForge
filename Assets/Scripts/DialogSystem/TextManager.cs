@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +14,7 @@ public class TextManager : MonoBehaviour
     [SerializeField]private GameObject _dialoguePanel;//对话框物体
     [SerializeField]private AdvancedText _text;//要显示文本的对话框
 
+    [SerializeField]private TMP_Text _nameText;//显示人物名字的文本框
     public static TextManager Instance;
     /// <summary>
     /// 处理文本后的结果，永远只显示第一个元素
@@ -58,7 +60,7 @@ public class TextManager : MonoBehaviour
     {
         AccordTextProduceResult(text);//处理文本
         ShowDialoguePanel();//显示对话框
-        ShowFirstSentence();//显示第一句话，显示第一句话后即开启了TMP的文本处理系统，之后的文本将由TMP处理
+        ShowNameAndFirstSentence();//显示第一句话，显示第一句话后即开启了TMP的文本处理系统，之后的文本将由TMP处理
     }
 
     /// <summary>
@@ -77,13 +79,21 @@ public class TextManager : MonoBehaviour
     /// <summary>
     /// 显示第一句话,并将其从result中移除
     /// </summary>
-    public void ShowFirstSentence()
+    public void ShowNameAndFirstSentence()
     {
+        ShowDialogueName();//显示对话人物名字
         _text.ShowTextByTyping(result[0]);
         result.RemoveAt(0);
     }
 
 #endregion
+
+    private void ShowDialogueName()
+    {
+        //显示对话人物名字
+        _nameText.text = result[0].Substring(2, result[0].IndexOf(">")-2);//显示人物名字
+    }
+
 
     private void ShowDialoguePanel()
     {
