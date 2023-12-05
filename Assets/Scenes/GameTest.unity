@@ -2869,7 +2869,7 @@ GameObject:
   - component: {fileID: 1998393560}
   m_Layer: 0
   m_Name: Trriger3
-  m_TagString: Untagged
+  m_TagString: Triger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2913,7 +2913,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.6}
+  m_Size: {x: 0.4, y: 0.4}
   m_EdgeRadius: 0
 --- !u!4 &1998393562
 Transform:
@@ -2943,7 +2943,7 @@ GameObject:
   - component: {fileID: 2003475993}
   m_Layer: 0
   m_Name: Trriger1
-  m_TagString: Untagged
+  m_TagString: Triger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2972,7 +2972,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.6}
+  m_Size: {x: 0.4, y: 0.4}
   m_EdgeRadius: 0
 --- !u!4 &2003475992
 Transform:
@@ -3029,7 +3029,7 @@ GameObject:
   - component: {fileID: 2041726590}
   m_Layer: 0
   m_Name: Trriger2
-  m_TagString: Untagged
+  m_TagString: Triger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3085,7 +3085,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.6}
+  m_Size: {x: 0.4, y: 0.4}
   m_EdgeRadius: 0
 --- !u!4 &2041726592
 Transform:
@@ -3115,7 +3115,7 @@ GameObject:
   - component: {fileID: 2060011277}
   m_Layer: 0
   m_Name: Trriger4
-  m_TagString: Untagged
+  m_TagString: Triger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3159,7 +3159,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.6}
+  m_Size: {x: 0.4, y: 0.4}
   m_EdgeRadius: 0
 --- !u!4 &2060011279
 Transform:

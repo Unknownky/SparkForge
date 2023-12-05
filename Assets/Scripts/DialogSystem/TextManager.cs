@@ -25,6 +25,9 @@ public class TextManager : MonoBehaviour
     [SerializeField]public Sprite _Sunbackground;//背景图片
     [SerializeField]public Sprite _Rainbackground;//背景图片
 
+    private Animator _dialoguePanelAnimator;//对话框的动画控制器
+
+    private float _fadeTime = 0.8f;//对话框淡入淡出的时间
 
 #if UNITY_EDITOR
     // [Multiline]
@@ -50,6 +53,7 @@ public class TextManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);//切换场景时不销毁
         result = new List<string>();//初始化
+        _dialoguePanelAnimator = _dialoguePanel.GetComponent<Animator>();
     }
 
 #region 暴露给外部的方法
@@ -68,7 +72,7 @@ public class TextManager : MonoBehaviour
     /// </summary>
     public void EndDialogueSystem()
     {
-        HideDialoguePanel();//隐藏对话框
+        StartCoroutine(HideDialoguePanel());//隐藏对话框
         result.Clear();//清空结果
     }
 
@@ -101,8 +105,10 @@ public class TextManager : MonoBehaviour
         _dialoguePanel.SetActive(true);
     }
 
-    private void HideDialoguePanel()
+    private IEnumerator HideDialoguePanel()
     {
+        _dialoguePanelAnimator.Play("fadeout");
+        yield return new WaitForSecondsRealtime(_fadeTime);
         //隐藏对话框
         _dialoguePanel.SetActive(false);
     }

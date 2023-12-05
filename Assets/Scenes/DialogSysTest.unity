@@ -723,7 +723,7 @@ VFXRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1861303761
-  m_SortingLayer: 1
+  m_SortingLayer: 4
   m_SortingOrder: 0
 --- !u!2083052967 &888540590
 VisualEffect:
@@ -1038,19 +1038,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2845800941617138274, guid: 0b93719cfe6559041a3d14342f7f8a41,
         type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 263ab7ebc93447f48ae81ca60d58ffbb,
-        type: 2}
-    - target: {fileID: 2845800941617138274, guid: 0b93719cfe6559041a3d14342f7f8a41,
-        type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2845800941617138274, guid: 0b93719cfe6559041a3d14342f7f8a41,
-        type: 3}
       propertyPath: m_hasFontAssetChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
