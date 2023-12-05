@@ -49,45 +49,44 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private bool CanCharacterMove(Vector3 direction)
     {
-        RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position + direction * 0.5f, direction, 1f);
-        if (raycastHit2D)
+        RaycastHit2D raycastTry = Physics2D.Raycast(transform.position + direction * 0.5f, direction, 1f);
+        if (raycastTry)
         {
-            string hitObjectTag = raycastHit2D.collider.gameObject.tag;
-            Debug.Log(hitObjectTag);
-            if (hitObjectTag == "Wall")
+            RaycastHit2D[] raycastHit2Ds = Physics2D.RaycastAll(transform.position + direction * 0.5f, direction, 1f);
+            foreach (var raycastHit2D in raycastHit2Ds)
             {
 #if UNITY_EDITOR
-                Debug.Log("Wall");
+                Debug.Log(raycastHit2D.collider.gameObject.name);
 #endif
-                return false;
-            }
-            else if (hitObjectTag == "Box")
-            {
-                // 1. 玩家可以推动箱子
-                // canBoxMove = true;
-                // 2. 获取玩家推动的箱子
-                obj = raycastHit2D.collider.gameObject;
-                // 3. 获取箱子的控制器
-                objectController = obj.GetComponent<ObjectController>();
-                // 4. 检测箱子是否可以移动
-                if (!objectController.CanObjectMove(direction))
+                string hitObjectTag = raycastHit2D.collider.gameObject.tag;
+                Debug.Log(hitObjectTag);
+
+                switch (hitObjectTag)
                 {
-                    return false;
+                    case "Wall":
+                        return false;
+                    case "Box":
+                        obj = raycastHit2D.collider.gameObject;
+                        objectController = obj.GetComponent<ObjectController>();
+                        if (!objectController.CanObjectMove(direction))
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            objectController.Move(direction);
+                            return true;
+                        }
+                    case "Destination":
+                        Destination();
+                        break;
+                    default:
+                        break;
                 }
-                else
-                { // 箱子可以移动
-                    objectController.Move(direction);
-                }
-            }
-            else if (hitObjectTag == "Destination")
-            {
-                Destination();
             }
         }
-
         return true;
     }
-
 
     private void FixedUpdate()
     {
