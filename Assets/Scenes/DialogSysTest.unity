@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: main camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -842,6 +842,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1621210427 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2845800941818272455, guid: 0b93719cfe6559041a3d14342f7f8a41,
+    type: 3}
+  m_PrefabInstance: {fileID: 2845800940270113215}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1723609135 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2845800940852339088, guid: 0b93719cfe6559041a3d14342f7f8a41,
@@ -895,6 +901,9 @@ MonoBehaviour:
   _dialoguePanel: {fileID: 1723609135}
   _text: {fileID: 749969731}
   _nameText: {fileID: 1355422685}
+  _characterImage: {fileID: 1621210427}
+  characterName: "\u5C0F\u660E"
+  characterSameRGB: 100
   _background: {fileID: 436962248}
   _Sunbackground: {fileID: 21300000, guid: 4408fe701aa377749a5b2003343f1cdc, type: 3}
   _Rainbackground: {fileID: 21300000, guid: 2b8d51bcba7aaf64081386cde3941be0, type: 3}
@@ -1041,6 +1050,11 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2845800941818272453, guid: 0b93719cfe6559041a3d14342f7f8a41,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 8c2433bd63ca09e42965965e2796eedc, type: 2}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b93719cfe6559041a3d14342f7f8a41, type: 3}

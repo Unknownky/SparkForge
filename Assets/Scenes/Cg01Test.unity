@@ -358,6 +358,7 @@ GameObject:
   m_Component:
   - component: {fileID: 604043484}
   - component: {fileID: 604043485}
+  - component: {fileID: 604043486}
   m_Layer: 0
   m_Name: director
   m_TagString: Untagged
@@ -399,11 +400,25 @@ PlayableDirector:
     value: {fileID: 2026560145}
   - key: {fileID: -8715714088972392288, guid: b76b31ba15e44a54097bf5dd060e3447, type: 2}
     value: {fileID: 327089973}
+  - key: {fileID: 4298324522526136440, guid: b76b31ba15e44a54097bf5dd060e3447, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References:
     - e5efa7814637df74e9dd530e4561d9cb: {fileID: 401358105}
     - fedca0cd15646bf4697444a3b169f823: {fileID: 401358105}
     - b5619f5586d460445be94f597c92524c: {fileID: 2026560140}
+--- !u!114 &604043486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604043483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faeab90e797ea224689115e075fa1093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &639301114
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,7 +617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShowDebugText: 1
+  m_ShowDebugText: 0
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
