@@ -147,11 +147,11 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
-            direction = Vector3.right;
+            direction = Vector3.left;
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            direction = Vector3.left;
+            direction = Vector3.right;
         }
         if (direction != Vector3.zero)
             canMove = CanCharacterMove(direction);
@@ -215,7 +215,14 @@ public class PlayerController : MonoBehaviour
                 switch (hitObjectTag)
                 {
                     case "Wall":
+                        if (inverseControl) //反向代码的逻辑
+                            return true;
                         return false;
+                    case "Floor":
+                        if(inverseControl){
+                            return false;
+                        }
+                        return true;
                     case "Box":
                         obj = raycastHit2D.collider.gameObject;
                         objectController = obj.GetComponent<ObjectController>();
