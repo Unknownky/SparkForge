@@ -12,9 +12,14 @@ public class ObjectController : MonoBehaviour
 
     public bool getGoal = false; // 该物体是否达成目的
 
+    private PlayerController _nextPlayerController;
+
+    private ObjectController _nextObjectController;
+
     private void Start() {
         getGoal = false;
     }
+
 
     public void Move(Vector3 direction)
     {
@@ -33,11 +38,15 @@ public class ObjectController : MonoBehaviour
             }
             else if (hitObjectTag == "Box")
             {
+                if(raycastHit2D.collider.gameObject.TryGetComponent<PlayerController>(out _nextPlayerController)){
+                    _nextObjectController = raycastHit2D.collider.gameObject.GetComponent<ObjectController>();
+                    return _nextObjectController.CanObjectMove(direction);
+                }
                 return false;
             }
-            else
+            else if(hitObjectTag == "Player")
             {
-                return true;
+                return false;
             }
         }
         return true;
