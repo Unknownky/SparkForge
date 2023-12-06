@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    private Camera mainCamera;
+
     /// <summary>
     /// 由代码找到所有的Box tag的物体，根据总分判断是否达成目标
     /// </summary>
@@ -22,6 +24,8 @@ public class GameManager : MonoBehaviour
         else
             Destroy(this);
         isWin = true;
+        mainCamera = Camera.main;
+        mainCamera.orthographicSize = 9f;
     }
 
 

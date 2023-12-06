@@ -16,9 +16,10 @@ public class PlayerController : MonoBehaviour
 
     private bool canMove = true;    // 玩家是否可以移动
 
-
     private GameObject obj; // 玩家推动的物体
     private ObjectController objectController; // 箱子的控制器
+
+    private List<GameObject> levelObjects; // 该关卡中所有的物体，包括角色等，之后再添加，用于位置的回溯
 
     private void Update()
     {
@@ -44,9 +45,7 @@ public class PlayerController : MonoBehaviour
             //重新加载场景
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-
     }
-
     private void Move(Vector3 direction)
     {
         transform.Translate(direction);
