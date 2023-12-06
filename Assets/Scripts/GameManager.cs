@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour
             }
         }
         #endif //用于代码测试
+
+
     }
 
     #region 时间触发函数

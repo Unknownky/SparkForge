@@ -54,7 +54,7 @@ public class TextManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(gameObject);//切换场景时不销毁
+        // DontDestroyOnLoad(gameObject);//切换场景时不销毁
         result = new List<string>();//初始化
         _dialoguePanelAnimator = _dialoguePanel?.GetComponent<Animator>();
         _characterImageMaterial = _characterImage?.GetComponent<Image>().material;
