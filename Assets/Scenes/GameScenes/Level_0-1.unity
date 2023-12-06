@@ -2224,7 +2224,7 @@ PrefabInstance:
     - target: {fileID: 8543318456955178628, guid: a7bc851d5b5e2194da223fe6a9f3f081,
         type: 3}
       propertyPath: m_Name
-      value: Trriger4
+      value: TrrigerEnter3-X
       objectReference: {fileID: 0}
     - target: {fileID: 8543318456955178634, guid: a7bc851d5b5e2194da223fe6a9f3f081,
         type: 3}
@@ -2280,6 +2280,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543318456955178635, guid: a7bc851d5b5e2194da223fe6a9f3f081,
+        type: 3}
+      propertyPath: targetobjectName
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543318456955178635, guid: a7bc851d5b5e2194da223fe6a9f3f081,
+        type: 3}
+      propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543318456955178635, guid: a7bc851d5b5e2194da223fe6a9f3f081,
+        type: 3}
+      propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 772347874}
+    - target: {fileID: 8543318456955178635, guid: a7bc851d5b5e2194da223fe6a9f3f081,
+        type: 3}
+      propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543318456955178635, guid: a7bc851d5b5e2194da223fe6a9f3f081,
+        type: 3}
+      propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Level_3-1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -2463,7 +2488,7 @@ PrefabInstance:
     - target: {fileID: 8543318456955178628, guid: a7bc851d5b5e2194da223fe6a9f3f081,
         type: 3}
       propertyPath: m_Name
-      value: Trriger3
+      value: TrrigerEnter2-X
       objectReference: {fileID: 0}
     - target: {fileID: 8543318456955178634, guid: a7bc851d5b5e2194da223fe6a9f3f081,
         type: 3}
@@ -2519,6 +2544,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543318456955178635, guid: a7bc851d5b5e2194da223fe6a9f3f081,
+        type: 3}
+      propertyPath: targetobjectName
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543318456955178635, guid: a7bc851d5b5e2194da223fe6a9f3f081,
+        type: 3}
+      propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543318456955178635, guid: a7bc851d5b5e2194da223fe6a9f3f081,
+        type: 3}
+      propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 772347874}
+    - target: {fileID: 8543318456955178635, guid: a7bc851d5b5e2194da223fe6a9f3f081,
+        type: 3}
+      propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543318456955178635, guid: a7bc851d5b5e2194da223fe6a9f3f081,
+        type: 3}
+      propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Level_2-1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

@@ -60,7 +60,9 @@ public class GameManager : MonoBehaviour
             }
         }
         #endif //用于代码测试
-
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            LoadScene("Level_0-1");
+        }
 
     }
 
@@ -118,4 +120,18 @@ public class GameManager : MonoBehaviour
             LoadScene("Level_1-2");
         }
     }
+
+    #region 用于第四关的逻辑控制
+    public void ChangeControl(){
+        PlayerController playerController = GameObject.Find("player").GetComponent<PlayerController>();
+        PlayerController shadowPlayerController = GameObject.Find("shadowplayer").GetComponent<PlayerController>();
+        playerController.isUnmoveable = !playerController.isUnmoveable;//更改玩家的可移动状态
+        shadowPlayerController.isUnmoveable = !shadowPlayerController.isUnmoveable;//更改影子的可移动状态
+        #if UNITY_EDITOR
+        Debug.Log("反转控制");
+        #endif
+
+    }
+
+    #endregion
 }

@@ -12,18 +12,38 @@ public class ObjectController : MonoBehaviour
 
     public bool getGoal = false; // 该物体是否达成目的
 
+    public bool haveShadowObject = false; // 该物体是否有影子物体
+    public GameObject ShadowObject = null; // 影子物体，默认为空
+
+    private ObjectController _shadowObjectController;   // 影子物体的控制器
+
     private PlayerController _nextPlayerController;
 
     private ObjectController _nextObjectController;
 
     private void Start() {
         getGoal = false;
+        if(haveShadowObject){
+            _shadowObjectController = ShadowObject.GetComponent<ObjectController>();
+        }
     }
 
 
     public void Move(Vector3 direction)
     {
         transform.Translate(direction);
+        if(haveShadowObject){
+            if(direction == Vector3.up)
+                ShadowObject.transform.Translate(Vector3.down);
+            else if(direction == Vector3.down)
+                ShadowObject.transform.Translate(Vector3.up);
+            else if(direction == Vector3.left)
+                ShadowObject.transform.Translate(Vector3.left);
+            else if(direction == Vector3.right)
+                ShadowObject.transform.Translate(Vector3.right);
+            else if(direction == Vector3.zero)
+                ShadowObject.transform.Translate(direction);
+        }
     }
 
     public bool CanObjectMove(Vector3 direction)
