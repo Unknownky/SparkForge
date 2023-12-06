@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -8,6 +9,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
+    [SerializeField] private float centerOffset = 0.5f; // 玩家的中心点偏移量  
+    [SerializeField] private float raycasetDistance = 0.8f; // 射线检测的距离
     private Vector3 direction = Vector3.zero;   // 玩家的移动方向
 
     private bool canMove = true;    // 玩家是否可以移动
@@ -15,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     private GameObject obj; // 玩家推动的物体
     private ObjectController objectController; // 箱子的控制器
+
 
     private void Update()
     {
@@ -49,10 +53,13 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private bool CanCharacterMove(Vector3 direction)
     {
-        RaycastHit2D raycastTry = Physics2D.Raycast(transform.position + direction * 0.5f, direction, 1f);
+        RaycastHit2D raycastTry = Physics2D.Raycast(transform.position + direction * centerOffset, direction, raycasetDistance);
+        #if UNITY_EDITOR
+        Debug.Log(raycasetDistance);
+        #endif
         if (raycastTry)
         {
-            RaycastHit2D[] raycastHit2Ds = Physics2D.RaycastAll(transform.position + direction * 0.5f, direction, 1f);
+            RaycastHit2D[] raycastHit2Ds = Physics2D.RaycastAll(transform.position + direction * centerOffset, direction, raycasetDistance);
             foreach (var raycastHit2D in raycastHit2Ds)
             {
 #if UNITY_EDITOR
@@ -109,5 +116,14 @@ public class PlayerController : MonoBehaviour
         // canBoxMove = false;
         // 3. 玩家到达终点后，玩家的颜色变为绿色
         GetComponent<Renderer>().material.color = Color.green;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position + Vector3.up * centerOffset, transform.position + Vector3.up * centerOffset + Vector3.up * raycasetDistance);
+        Gizmos.DrawLine(transform.position + Vector3.down * centerOffset, transform.position + Vector3.down * centerOffset + Vector3.down * raycasetDistance);
+        Gizmos.DrawLine(transform.position + Vector3.left * centerOffset, transform.position + Vector3.left * centerOffset + Vector3.left * raycasetDistance);
+        Gizmos.DrawLine(transform.position + Vector3.right * centerOffset, transform.position + Vector3.right * centerOffset + Vector3.right * raycasetDistance);
     }
 }
