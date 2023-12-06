@@ -97,7 +97,7 @@ public class AdvancedText : TextMeshProUGUI
 
     private int _typingIndex = 0; //打字机索引
 
-    private float _defaultInterval = 0.1f; //默认间隔时间
+    private float _defaultInterval = 0.05f; //默认间隔时间
 
     private float _interval; //间隔时间
 
