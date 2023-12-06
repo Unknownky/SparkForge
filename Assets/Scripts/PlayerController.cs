@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// 该脚本控制推箱子游戏中的玩家
@@ -18,7 +19,6 @@ public class PlayerController : MonoBehaviour
 
     private GameObject obj; // 玩家推动的物体
     private ObjectController objectController; // 箱子的控制器
-
 
     private void Update()
     {
@@ -40,6 +40,10 @@ public class PlayerController : MonoBehaviour
         }
         if (direction != Vector3.zero)
             canMove = CanCharacterMove(direction);
+        if(Input.GetKeyDown(KeyCode.R)){
+            //重新加载场景
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
 
     }
 
@@ -54,9 +58,6 @@ public class PlayerController : MonoBehaviour
     private bool CanCharacterMove(Vector3 direction)
     {
         RaycastHit2D raycastTry = Physics2D.Raycast(transform.position + direction * centerOffset, direction, raycasetDistance);
-        #if UNITY_EDITOR
-        Debug.Log(raycasetDistance);
-        #endif
         if (raycastTry)
         {
             RaycastHit2D[] raycastHit2Ds = Physics2D.RaycastAll(transform.position + direction * centerOffset, direction, raycasetDistance);

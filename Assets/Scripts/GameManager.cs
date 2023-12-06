@@ -9,12 +9,19 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    /// <summary>
+    /// 由代码找到所有的Box tag的物体，根据总分判断是否达成目标
+    /// </summary>
+    private GameObject[] targetObjects;
+
+    private bool isWin = true;
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
         else
             Destroy(this);
+        isWin = true;
     }
 
 
@@ -53,7 +60,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    #region 时间触发函数
+    #region 事件触发函数
     public static void LoadScene(string sceneName)
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
@@ -83,4 +90,28 @@ public class GameManager : MonoBehaviour
 
     }
     #endregion
+
+    public void CheckWin(){
+        #if UNITY_EDITOR
+        Debug.Log("检查胜利条件");
+        #endif
+        isWin = true;
+        targetObjects = GameObject.FindGameObjectsWithTag("Box"); 
+        foreach (var targetObject in targetObjects)
+        {
+            isWin = isWin && targetObject.GetComponent<ObjectController>().getGoal;
+            #if UNITY_EDITOR
+            Debug.Log(targetObject.name + " " + targetObject.GetComponent<ObjectController>().getGoal);
+            Debug.Log(isWin);
+            #endif
+        }
+        if(isWin){ // 如果所有的箱子都到达了目的地
+        #if UNITY_EDITOR
+            Debug.Log("游戏胜利");
+#endif
+            //TODO:进行剧情的播放
+            // TextManager.Instance.StartDialogueSystem("<#我>（这个文件是我做的，为什么负责人是她的名字……）<break><#我>（我要去找她问个清楚）<finish>");
+            LoadScene("Level_1-2");
+        }
+    }
 }
