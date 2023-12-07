@@ -11,7 +11,11 @@ public class PersistantGroup : MonoBehaviour
             Instance = this;
         else
             Destroy(this);
-        DontDestroyOnLoad(gameObject);
+        if (GameObject.Find("PersistantGroup") == null){
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+            Destroy(this);
     }
 
 

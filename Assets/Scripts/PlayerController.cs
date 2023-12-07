@@ -207,11 +207,12 @@ public class PlayerController : MonoBehaviour
             foreach (var raycastHit2D in raycastHit2Ds)
             {
 #if UNITY_EDITOR
-                Debug.Log(raycastHit2D.collider.gameObject.name);
+                Debug.Log("人物射线检测击中物体名字"+raycastHit2D.collider.gameObject.name);
 #endif
                 string hitObjectTag = raycastHit2D.collider.gameObject.tag;
-                Debug.Log(hitObjectTag);
-
+                #if UNITY_EDITOR
+                Debug.Log("人物射线检测击中物体tag"+hitObjectTag);
+                #endif
                 switch (hitObjectTag)
                 {
                     case "Wall":
@@ -240,6 +241,8 @@ public class PlayerController : MonoBehaviour
                         Destination();
                         break;
                     case "Player":
+                        return false;
+                    case "Boarder":
                         return false;
                     default:
                         break;
