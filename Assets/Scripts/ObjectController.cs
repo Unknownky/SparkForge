@@ -82,7 +82,7 @@ public class ObjectController : MonoBehaviour
             #if UNITY_EDITOR
             Debug.Log("箱子射线检测击中"+hitObjectTag);
             #endif
-            if (PlayerController.levelLogic == PlayerController.LevelLogic.Level_3)//第三关的逻辑
+            if (PlayerController.levelLogic == LevelLogic.Level_3)//第三关的逻辑
             {
                 if (hitObjectTag == "Boarder")
                 {
@@ -146,7 +146,6 @@ public class ObjectController : MonoBehaviour
 
         }
         return true;
-
     }
 
     //暴露给Triger事件来触发
@@ -156,8 +155,9 @@ public class ObjectController : MonoBehaviour
         Debug.Log(gameObject.name + "到达目的地");
 #endif
         getGoal = true;
-        GameManager.Instance.CheckWin();
     }
+
+
 
     private void OnDrawGizmos()
     {

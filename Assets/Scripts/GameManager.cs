@@ -1,16 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// 在这里进行游戏逻辑的更新
 /// </summary>
+/// 
+
+public enum LevelLogic
+{
+    Level_1,
+    Level_2,
+    Level_3,
+    Level_4,
+}
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField]private Sprite mainSceneLightBackground;
-    [SerializeField]private Sprite mainSceneNightBackground;
+    [SerializeField] private Sprite mainSceneLightBackground;
+    [SerializeField] private Sprite mainSceneNightBackground;
     private Camera mainCamera;
 
     private GameObject mainSceneBackground;
@@ -19,7 +29,23 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private GameObject[] targetObjects;
 
-    private bool isWin = true;
+    /// <summary>
+    /// 游戏通过这个变量来判断是否胜利
+    /// </summary>
+    [HideInInspector] public bool isWin = true;
+
+    /// <summary>
+    /// 当前关卡的逻辑
+    /// </summary>
+    [HideInInspector] public LevelLogic levelLogic;
+
+    #region 通关参数
+    private GameObject[] _level_23Objects;
+
+    #endregion
+
+
+
     private void Awake()
     {
         if (Instance == null)
@@ -32,15 +58,85 @@ public class GameManager : MonoBehaviour
         mainSceneBackground = GameObject.Find("MainSceneBackground");
 #if UNITY_EDITOR
         // BackgroundTest();
-        #endif
+#endif
         SetMainSceneBackground();
     }
 
-    #if UNITY_EDITOR
-    private void BackgroundTest(){
+#if UNITY_EDITOR
+
+    private void Start()
+    {
+        //判断当前的关卡，如果为Level_1开头的场景，则加载Level_1的输入逻辑
+        //根据关卡加载对应的输入逻辑
+        MatchCurrentLevelLogic();
+    }
+
+    private void MatchCurrentLevelLogic()
+    {
+        //判断当前的关卡，如果为Level_1开头的场景，则加载Level_1的输入逻辑
+        //根据关卡加载对应的输入逻辑
+        if (SceneManager.GetActiveScene().name.StartsWith("Level_0"))
+        {
+            //加载Level_1的输入逻辑
+            levelLogic = LevelLogic.Level_1;
+        }
+        else if (SceneManager.GetActiveScene().name.StartsWith("Level_1"))
+        {
+            //加载Level_1的输入逻辑
+            levelLogic = LevelLogic.Level_1;
+        }
+        else if (SceneManager.GetActiveScene().name.StartsWith("Level_2"))
+        {
+            //加载Level_2的输入逻辑
+            levelLogic = LevelLogic.Level_2;
+        }
+        else if (SceneManager.GetActiveScene().name.StartsWith("Level_3"))
+        {
+            //加载Level_3的输入逻辑
+            levelLogic = LevelLogic.Level_3;
+        }
+        else if (SceneManager.GetActiveScene().name.StartsWith("Level_4"))
+        {
+            //加载Level_4的输入逻辑
+            levelLogic = LevelLogic.Level_4;
+        }
+    }
+
+    private void LoadCurrentLevelLogic(LevelLogic levelLogic)
+    {
+        switch (levelLogic)
+        {
+            case LevelLogic.Level_1:
+                break;
+            case LevelLogic.Level_2:
+
+                break;
+            case LevelLogic.Level_3:
+                break;
+            case LevelLogic.Level_4:
+                break;
+            default:
+                break;
+        }
+    }
+
+    #region 关卡初始化逻辑
+    private void Level_23Init()
+    {
+        _level_23Objects = GameObject.FindGameObjectsWithTag("Box");
+        foreach (var box in _level_23Objects)
+        {
+            box.GetComponent<ObjectController>().getGoal = false; //全部设置为到达目的地，进入判定区域时设置为false，出去时设置为true
+        }
+    }
+
+    #endregion
+
+    private void BackgroundTest()
+    {
         PlayerPrefs.SetInt("GameStatus", 1);
     }
-    #endif
+#endif
 
     /// <summary>
     /// 根据游戏状态设置主场景的背景，0为白天，1为夜晚，使用PlayerPrefs来存储
@@ -51,7 +147,7 @@ public class GameManager : MonoBehaviour
         {
             mainSceneBackground.GetComponent<SpriteRenderer>().sprite = mainSceneLightBackground;
         }
-        else if(PlayerPrefs.GetInt("GameStatus") == 1)
+        else if (PlayerPrefs.GetInt("GameStatus") == 1)
         {
             mainSceneBackground.GetComponent<SpriteRenderer>().sprite = mainSceneNightBackground;
         }
@@ -97,7 +193,8 @@ public class GameManager : MonoBehaviour
     }
 
     #region 事件触发函数
-    public static void ReturnToMainScene(){
+    public static void ReturnToMainScene()
+    {
         ResetGameStatus();
         LoadScene("Level_0-1");
     }
@@ -130,6 +227,20 @@ public class GameManager : MonoBehaviour
         Debug.Log("打开设置");
 
     }
+
+    /// <summary>
+    /// 达成胜利条件
+    /// </summary>
+    public static void SetWin()
+    {
+        Instance.isWin = true;
+    }
+
+    public static void ResetWin()
+    {
+        Instance.isWin = false;
+    }
+
     #endregion
 
     #region 辅助函数
@@ -161,7 +272,7 @@ public class GameManager : MonoBehaviour
 #endif
             //TODO:进行剧情的播放
             // TextManager.Instance.StartDialogueSystem("<#我>（这个文件是我做的，为什么负责人是她的名字……）<break><#我>（我要去找她问个清楚）<finish>");
-            LoadScene("Level_1-2");
+            // LoadScene("Level_1-2");
         }
     }
 
@@ -175,7 +286,106 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("反转控制");
 #endif
-
     }
     #endregion
+
+    //TODO
+    #region 各个关卡胜利进行逻辑
+    public void Level_11Win(string dialogue)
+    {
+        if (GameManager.Instance.isWin)
+        {
+            //TODO:进行剧情的播放
+            TextManager.Instance.StartDialogueSystem(dialogue);
+
+        }
+    }
+
+    public void Level_12Win(string dialogue)
+    {
+        if (GameManager.Instance.isWin)
+        {
+            //TODO:进行剧情的播放
+            TextManager.Instance.StartDialogueSystem(dialogue);
+        }
+
+    }
+    public void Level_13Win(string dialogue)
+    {
+        if (GameManager.Instance.isWin)
+        {
+            //TODO:进行剧情的播放
+            TextManager.Instance.StartDialogueSystem(dialogue);
+        }
+    }
+
+    public void Level_21Win(string dialogue)
+    {
+        if (GameManager.Instance.isWin)
+        {
+            TextManager.Instance.StartDialogueSystem(dialogue);
+
+        }
+    }
+
+    public void Level_22Win(string dialogue)
+    {
+        if (GameManager.Instance.isWin)
+        {
+            TextManager.Instance.StartDialogueSystem(dialogue);
+
+        }
+    }
+
+    public void Level_23Win(string dialogue)
+    {
+        foreach (var box in _level_23Objects)
+        {
+            if (box.GetComponent<ObjectController>().getGoal == false)
+            {
+                return;
+            }
+        }
+        //TODO:进行剧情的播放
+        TextManager.Instance.StartDialogueSystem(dialogue);
+    }
+
+    public void Level_31Win(string dialogue)
+    {
+        if (GameManager.Instance.isWin)
+        {
+            TextManager.Instance.StartDialogueSystem(dialogue);
+
+        }
+    }
+
+    public void Level_32Win(string dialogue)
+    {
+        if (GameManager.Instance.isWin)
+        {
+            TextManager.Instance.StartDialogueSystem(dialogue);
+
+        }
+    }
+
+    public void Level_33Win(string dialogue)
+    {
+        if (GameManager.Instance.isWin)
+        {
+            TextManager.Instance.StartDialogueSystem(dialogue);
+
+        }
+    }
+
+    public void Level_4XWin(string dialogue)
+    {
+        if (GameManager.Instance.isWin)
+        {
+            TextManager.Instance.StartDialogueSystem(dialogue);
+
+        }
+    }
+    #endregion
+
+
 }

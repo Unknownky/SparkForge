@@ -42,43 +42,12 @@ public class PlayerController : MonoBehaviour
 
     public bool isObject = false;
 
-    public enum LevelLogic
-    {
-        Level_1,
-        Level_2,
-        Level_3,
-        Level_4,
-    }
 
     private void Start()
     {
         //判断当前的关卡，如果为Level_1开头的场景，则加载Level_1的输入逻辑
         //根据关卡加载对应的输入逻辑
-        if (SceneManager.GetActiveScene().name.StartsWith("Level_0"))
-        {
-            //加载Level_1的输入逻辑
-            levelLogic = LevelLogic.Level_1;
-        }
-        else if (SceneManager.GetActiveScene().name.StartsWith("Level_1"))
-        {
-            //加载Level_1的输入逻辑
-            levelLogic = LevelLogic.Level_1;
-        }
-        else if (SceneManager.GetActiveScene().name.StartsWith("Level_2"))
-        {
-            //加载Level_2的输入逻辑
-            levelLogic = LevelLogic.Level_2;
-        }
-        else if (SceneManager.GetActiveScene().name.StartsWith("Level_3"))
-        {
-            //加载Level_3的输入逻辑
-            levelLogic = LevelLogic.Level_3;
-        }
-        else if (SceneManager.GetActiveScene().name.StartsWith("Level_4"))
-        {
-            //加载Level_4的输入逻辑
-            levelLogic = LevelLogic.Level_4;
-        }
+        levelLogic = GameManager.Instance.levelLogic;//设置当前关卡的逻辑
     }
 
 
@@ -274,6 +243,8 @@ public class PlayerController : MonoBehaviour
                     case "Player":
                         return false;
                     case "Boarder":
+                        return false;
+                    case "ShadowBox":
                         return false;
                     default:
                         break;
