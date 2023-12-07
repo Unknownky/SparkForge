@@ -54,7 +54,12 @@ public class PlayerController : MonoBehaviour
     {
         //判断当前的关卡，如果为Level_1开头的场景，则加载Level_1的输入逻辑
         //根据关卡加载对应的输入逻辑
-        if (SceneManager.GetActiveScene().name.StartsWith("Level_1"))
+        if (SceneManager.GetActiveScene().name.StartsWith("Level_0"))
+        {
+            //加载Level_1的输入逻辑
+            levelLogic = LevelLogic.Level_1;
+        }
+        else if (SceneManager.GetActiveScene().name.StartsWith("Level_1"))
         {
             //加载Level_1的输入逻辑
             levelLogic = LevelLogic.Level_1;
@@ -102,10 +107,12 @@ public class PlayerController : MonoBehaviour
     //2.踩到切换砖的时候切换角色的操纵权，原角色则挂机，失去控制。
     private void Level_4_Input()
     {
-        if(isUnmoveable){
+        if (isUnmoveable)
+        {
             return;
         }
-        else{
+        else
+        {
             Level_1_Input();
         }
     }
@@ -127,10 +134,12 @@ public class PlayerController : MonoBehaviour
     //按方向键的时候，所有可移动物品往同一方向一起移动一格。人物不动。
     private void Level_2_Input()
     {
-        if(gameObject.tag == "Player"){
+        if (gameObject.tag == "Player")
+        {
             return;
         }
-        else if(gameObject.tag == "Box"){
+        else if (gameObject.tag == "Box")
+        {
             Level_1_Input();
         }
     }
@@ -167,6 +176,9 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
+#if UNITY_EDITOR
+            Debug.Log("角色检测到按下W键");
+#endif
             direction = Vector3.up;
         }
         else if (Input.GetKeyDown(KeyCode.S))
@@ -207,12 +219,65 @@ public class PlayerController : MonoBehaviour
             foreach (var raycastHit2D in raycastHit2Ds)
             {
 #if UNITY_EDITOR
-                Debug.Log("人物射线检测击中物体名字"+raycastHit2D.collider.gameObject.name);
+                Debug.Log("人物射线检测击中物体名字" + raycastHit2D.collider.gameObject.name);
 #endif
                 string hitObjectTag = raycastHit2D.collider.gameObject.tag;
-                #if UNITY_EDITOR
-                Debug.Log("人物射线检测击中物体tag"+hitObjectTag);
-                #endif
+#if UNITY_EDITOR
+                Debug.Log("人物射线检测击中物体tag" + hitObjectTag);
+#endif
+                switch (hitObjectTag)
+                {
+                    case "Box":
+                        obj = raycastHit2D.collider.gameObject;
+                        objectController = obj.GetComponent<ObjectController>();
+                        if (!objectController.CanObjectMove(direction))
+                        {
+                            return false;
+                        }
+                        else //如果当前推动的箱子可以移动
+                        {
+
+                            if (!isObject)
+                            {
+                                if (objectController.haveShadowObject)
+                                {
+                                    Vector3 newdirection = objectController.LevelBoxMoveDirectionFix(direction);//修正用于检测的方向
+                                    if (objectController.ShadowObject.GetComponent<ObjectController>().CanObjectMove(newdirection))
+                                    {
+                                        objectController.Move(direction);
+                                        return true;
+                                    }else{
+                                        return false;
+                                    }
+                                }
+                                else
+                                {
+                                    objectController.Move(direction);
+                                }
+                            }
+                            return true;
+                        }
+                    case "Wall":
+                        if (inverseControl) //反向代码的逻辑
+                            return true;
+                        return false;
+                    case "Floor":
+                        if (inverseControl)
+                        {
+                            return false;
+                        }
+                        return true;
+
+                    case "Destination":
+                        Destination();
+                        break;
+                    case "Player":
+                        return false;
+                    case "Boarder":
+                        return false;
+                    default:
+                        break;
+                }
                 switch (hitObjectTag)
                 {
                     case "Wall":
@@ -220,7 +285,8 @@ public class PlayerController : MonoBehaviour
                             return true;
                         return false;
                     case "Floor":
-                        if(inverseControl){
+                        if (inverseControl)
+                        {
                             return false;
                         }
                         return true;
@@ -231,10 +297,24 @@ public class PlayerController : MonoBehaviour
                         {
                             return false;
                         }
-                        else
+                        else //如果当前推动的箱子可以移动
                         {
-                            if(!isObject)
-                                objectController.Move(direction);
+
+                            if (!isObject)
+                            {
+                                if (objectController.haveShadowObject)
+                                {
+                                    Vector3 newdirection = objectController.LevelBoxMoveDirectionFix(direction);//修正用于检测的方向
+                                    if (objectController.ShadowObject.GetComponent<ObjectController>().CanObjectMove(newdirection))
+                                    {
+                                        objectController.Move(direction);
+                                    }
+                                }
+                                else
+                                {
+                                    objectController.Move(direction);
+                                }
+                            }
                             return true;
                         }
                     case "Destination":

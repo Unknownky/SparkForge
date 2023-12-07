@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PersistantGroup : MonoBehaviour
 {
+
     public static PersistantGroup Instance;
     private void Awake()
     {
@@ -11,12 +11,6 @@ public class PersistantGroup : MonoBehaviour
             Instance = this;
         else
             Destroy(this);
-        if (GameObject.Find("PersistantGroup") == null){
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-            Destroy(this);
+        DontDestroyOnLoad(this);
     }
-
-
 }

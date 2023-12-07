@@ -200,7 +200,8 @@ PrefabInstance:
         type: 3}
       propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5549394513126655115, guid: 301eff4015b76f043a94d653b55a430b,
+        type: 3}
     - target: {fileID: 8543318456955178635, guid: a7bc851d5b5e2194da223fe6a9f3f081,
         type: 3}
       propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -378,7 +379,8 @@ PrefabInstance:
         type: 3}
       propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5549394513126655115, guid: 301eff4015b76f043a94d653b55a430b,
+        type: 3}
     - target: {fileID: 8543318456955178635, guid: a7bc851d5b5e2194da223fe6a9f3f081,
         type: 3}
       propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName

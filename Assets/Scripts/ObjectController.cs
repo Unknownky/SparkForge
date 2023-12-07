@@ -49,8 +49,32 @@ public class ObjectController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 修正用来检测的方向，用于适应第四关的逻辑
+    /// </summary>
+    /// <param name="direction"></param>
+    /// <returns></returns>
+    public Vector3 LevelBoxMoveDirectionFix(Vector3 direction){
+        //在这里进行位置的更新来适应shadowObject的移动检测(第四关的逻辑修正)
+        if(haveShadowObject){
+            if(direction == Vector3.up)
+                direction = Vector3.down;
+            else if(direction == Vector3.down)
+                direction = Vector3.up;
+            else if(direction == Vector3.left)
+                direction = Vector3.left;
+            else if(direction == Vector3.right)
+                direction = Vector3.right;
+            else if(direction == Vector3.zero)
+                direction = Vector3.zero;
+        }
+        return direction;
+    }
+
+
     public bool CanObjectMove(Vector3 direction)
     {
+
         RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position + direction * centerOffset, direction, raycasetDistance);
         if (raycastHit2D)
         {

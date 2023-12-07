@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
@@ -40,43 +40,51 @@ public class GameManager : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Dialogue1"))
                 {
-                    #if UNITY_EDITOR
+#if UNITY_EDITOR
                     Debug.Log("点击了对话物体");
-                    #endif
+#endif
                     TextManager.Instance.StartDialogueSystem("<#同事一>（把一踏文件扔在桌上）今天你把这沓文件做完，明天早上交到我办公桌上。<break><#我>啊……好的<break><#我>（今天又要加班了）<finish>");
                 }
-                if(hit.collider.CompareTag("Dialogue2")){
-                    #if UNITY_EDITOR
+                if (hit.collider.CompareTag("Dialogue2"))
+                {
+#if UNITY_EDITOR
                     Debug.Log("点击了对话物体");
-                    #endif
+#endif
                     TextManager.Instance.StartDialogueSystem("<#同事二>上次交给你的项目做完了吗？<break><#我>还差一点没有完成。<break><#同事二>一个小项目这么久还没做完(不耐烦)，赶快把文件交给我<break><#我>……好<break>");
                 }
-                if(hit.collider.CompareTag("Dialogue3")){
-                    #if UNITY_EDITOR
+                if (hit.collider.CompareTag("Dialogue3"))
+                {
+#if UNITY_EDITOR
                     Debug.Log("点击了对话物体");
-                    #endif
+#endif
                     TextManager.Instance.StartDialogueSystem("<#我>(看到桌子上的文件)这个不是我做的项目吗，怎么负责人是她的名字……");
                 }
             }
         }
-        #endif //用于代码测试
-        if(Input.GetKeyDown(KeyCode.Escape)){
-            LoadScene("Level_0-1");
+#endif //用于代码测试
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ReturnToMainScene();
         }
 
     }
 
     #region 事件触发函数
+    public static void ReturnToMainScene(){
+        ResetGameStatus();
+        LoadScene("Level_0-1");
+    }
+
     public static void LoadScene(string sceneName)
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
-    }   
+    }
 
     public static void QuitGame()
     {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         Debug.Log("退出游戏");
-        #endif
+#endif
 
         // Application.Quit();
     }
@@ -91,28 +99,38 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 打开设置
     /// </summary>
-    public static void EnableSetting(){
+    public static void EnableSetting()
+    {
         Debug.Log("打开设置");
 
     }
     #endregion
 
-    public void CheckWin(){
-        #if UNITY_EDITOR
+    #region 辅助函数
+    private static void ResetGameStatus()
+    {
+        Destroy(GameObject.Find("DialogGroup")); //删除游戏管理组件
+    }
+    #endregion
+
+    public void CheckWin()
+    {
+#if UNITY_EDITOR
         Debug.Log("检查胜利条件");
-        #endif
+#endif
         isWin = true;
-        targetObjects = GameObject.FindGameObjectsWithTag("Box"); 
+        targetObjects = GameObject.FindGameObjectsWithTag("Box");
         foreach (var targetObject in targetObjects)
         {
             isWin = isWin && targetObject.GetComponent<ObjectController>().getGoal;
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             Debug.Log(targetObject.name + " " + targetObject.GetComponent<ObjectController>().getGoal);
             Debug.Log(isWin);
-            #endif
+#endif
         }
-        if(isWin){ // 如果所有的箱子都到达了目的地
-        #if UNITY_EDITOR
+        if (isWin)
+        { // 如果所有的箱子都到达了目的地
+#if UNITY_EDITOR
             Debug.Log("游戏胜利");
 #endif
             //TODO:进行剧情的播放
@@ -122,14 +140,15 @@ public class GameManager : MonoBehaviour
     }
 
     #region 用于第四关的逻辑控制
-    public void ChangeControl(){
+    public void ChangeControl()
+    {
         PlayerController playerController = GameObject.Find("player").GetComponent<PlayerController>();
         PlayerController shadowPlayerController = GameObject.Find("shadowplayer").GetComponent<PlayerController>();
         playerController.isUnmoveable = !playerController.isUnmoveable;//更改玩家的可移动状态
         shadowPlayerController.isUnmoveable = !shadowPlayerController.isUnmoveable;//更改影子的可移动状态
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         Debug.Log("反转控制");
-        #endif
+#endif
 
     }
 
