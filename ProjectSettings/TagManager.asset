@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Dialogue
+  - Box
+  - Wall
+  - Triger
+  - Dialogue1
+  - Dialogue2
+  - Dialogue3
   layers:
   - Default
   - TransparentFX
@@ -40,4 +47,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 2671528669
+    locked: 0
+  - name: Objects
+    uniqueID: 1016752455
+    locked: 0
+  - name: Player
+    uniqueID: 4185802633
+    locked: 0
+  - name: ForeGround
+    uniqueID: 2433663535
     locked: 0
