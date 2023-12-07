@@ -55,6 +55,9 @@ public class PlayerController : MonoBehaviour
     {
         switch (levelLogic)
         {
+            case LevelLogic.Level_0:
+                Level_1_Input();
+                break;
             case LevelLogic.Level_1:
                 Level_1_Input();
                 break;

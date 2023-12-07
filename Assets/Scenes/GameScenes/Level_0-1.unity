@@ -2960,6 +2960,9 @@ MonoBehaviour:
     type: 3}
   mainSceneNightBackground: {fileID: 21300000, guid: b52d2772f7cb4284b9afcb18a978e0d2,
     type: 3}
+  dialogueContainer: {fileID: 11400000, guid: 5c185676340d5f4468812aa9d978379b, type: 2}
+  isWin: 0
+  levelLogic: 0
 --- !u!4 &772347875
 Transform:
   m_ObjectHideFlags: 0
