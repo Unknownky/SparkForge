@@ -1,0 +1,2480 @@
+fileFormatVersion: 2
+guid: e92c05e059e082743b4ad07a2ae679cc
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 82
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: levle1-3_0
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 949
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d40e39f4760a72468e4bcbac0e467c2
+      internalID: 457729651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_1
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 949
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f858a1684a4a02c47bdbda9b4c22fdd5
+      internalID: 7269464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_2
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 949
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8545a9c5e5caaac48960aa43eff7872b
+      internalID: 590437632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_3
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 867
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a863a55ed8b65a047805c177c2e1ca80
+      internalID: -1634764968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_4
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 867
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8795838b0969894096e3950f78cc567
+      internalID: 1552406055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_5
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 867
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b0e63a2b03a4a842bdf52e8734cc921
+      internalID: -2056895754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_6
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 867
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06b2947a310d2c1469f84d43aaf0907a
+      internalID: -1249129625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_7
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 867
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22d19e034fd24044fb2c5376ac6f234a
+      internalID: -848488961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_8
+      rect:
+        serializedVersion: 2
+        x: 1123
+        y: 867
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fc3f3d893631b24aa0a0e678466be19
+      internalID: 1595612230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_9
+      rect:
+        serializedVersion: 2
+        x: 1205
+        y: 867
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36067e0e28d79724a98b9f5a8bde9ac4
+      internalID: 1055676839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_10
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 785
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f1a051593767aa46ae24e4be95ca26c
+      internalID: 1274512675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_11
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 785
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66760244c7963b742bb85cf68b240e4a
+      internalID: -204489472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_12
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 785
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b75056a0c365ed4d9554aec73921111
+      internalID: -1177233925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_13
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 785
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f44dd3075721f0449e141df7f382164
+      internalID: -1477752015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_14
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 785
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a131f717a2a082a4fb241eaadda3f25b
+      internalID: -692826842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_15
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 785
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b028facd9300ea43aabec9dd7c96d85
+      internalID: -309975447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_16
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 785
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b444446dc29efa4d8e322688d3cec7a
+      internalID: 597828148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_17
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 785
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6d2cf972bbbcd44e9dab426f2e78771
+      internalID: 1385704258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_18
+      rect:
+        serializedVersion: 2
+        x: 1123
+        y: 785
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afab7ea618d78e4469d13e0d8371513e
+      internalID: 206634293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_19
+      rect:
+        serializedVersion: 2
+        x: 1205
+        y: 785
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d64fd775036a4242bb98a7cc560fe1a
+      internalID: 104536987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_20
+      rect:
+        serializedVersion: 2
+        x: 1287
+        y: 785
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68a6c91f1f5e73448b0f2cf5b4f951d4
+      internalID: 1101987140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_21
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 785
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06be538e84998a949b737bc3064eb6e5
+      internalID: -574301027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_22
+      rect:
+        serializedVersion: 2
+        x: 1451
+        y: 785
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1d6421fc943aa74cb9a0ef7e6bd6dd8
+      internalID: 270990493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_23
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 703
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69f8e1fb2a46a4b44a2ec46cf3bb6488
+      internalID: -1154538057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_24
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 703
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1320bc4cb101b54a8e1e0742df2b839
+      internalID: -446256803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_25
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 703
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 781ccdb22b2490947bc351b38767f468
+      internalID: 1113031938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_26
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 703
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 869102b3e7ec12a40a5275b90bc6911e
+      internalID: 1639086134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_27
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 703
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d027abd6b06e4b047a4ae3a9dc03eb38
+      internalID: 1215136820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_28
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 703
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b54a3be7fd8140d42b0e6ec67ca8d2d5
+      internalID: 988875789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_29
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 703
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6229b369528c1d45ba0e6b859466854
+      internalID: 966648436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_30
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 703
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28e9e697b0d79e847b7a540dfd27d342
+      internalID: 637173693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_31
+      rect:
+        serializedVersion: 2
+        x: 1123
+        y: 703
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3444183a7547eac49b548b609a377316
+      internalID: -277652324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_32
+      rect:
+        serializedVersion: 2
+        x: 1205
+        y: 703
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be57aa8ce10279e4e823f78e2744ef2e
+      internalID: 1540113381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_33
+      rect:
+        serializedVersion: 2
+        x: 1287
+        y: 703
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 367808693a7a14640a6c92984355a07d
+      internalID: -940970288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_34
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 703
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ba65810fd4f1fb44a362356845fa033
+      internalID: 2028413881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_35
+      rect:
+        serializedVersion: 2
+        x: 1451
+        y: 703
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef959cabfe7a5314cb054e72a97dc736
+      internalID: 1237806255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_36
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 621
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80c2db28231d9c040ac40bd111ba1e68
+      internalID: 652120731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_37
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 621
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 361e976b1d27aae49a99a241d4068b72
+      internalID: 571428678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_38
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 621
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d21c76f7ba911a49ab3fd2192a46bf4
+      internalID: 1388208185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_39
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 621
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2c0ec4b87a475f4a8eea12ae275fb24
+      internalID: -1693141723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_40
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 621
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbadc2b1429721944a256d7c13075fe5
+      internalID: -2078800306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_41
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 621
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d07af2f9309eb246a61b988eebb99ee
+      internalID: 1849713906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_42
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 621
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae3a3e269d6be434181d7530126813bb
+      internalID: 874365639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_43
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 621
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4073e8fafa47160419159159ec7b390e
+      internalID: 911313080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_44
+      rect:
+        serializedVersion: 2
+        x: 1123
+        y: 621
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3120e98c66f3b074d9dd69ec7079202e
+      internalID: -762909753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_45
+      rect:
+        serializedVersion: 2
+        x: 1205
+        y: 621
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a51e68a9e7b86fb408b0d512f479d78c
+      internalID: -261303293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_46
+      rect:
+        serializedVersion: 2
+        x: 1287
+        y: 621
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cb86b156786cff4ead54fa806e56c07
+      internalID: -1534434603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_47
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 621
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af664a707d3fa694f82bc73612d9d4f4
+      internalID: 1553540727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_48
+      rect:
+        serializedVersion: 2
+        x: 1451
+        y: 621
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e970c0f15bd11b49a0c0ed4d37be77a
+      internalID: 1299288769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_49
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 539
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c8fc82e54ea69342b685705067f790e
+      internalID: -1599958113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_50
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 539
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1f94e8fca6b5f64f934ecc2d250a5a8
+      internalID: -2015462008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_51
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 539
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 067015f014436614f9ca772c4d93b3e6
+      internalID: 408242270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_52
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 539
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 104772c65eb7c784db3e3f731c9a8683
+      internalID: -938588624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_53
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 539
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af0b5e7b98a73564ca941cb5257222b3
+      internalID: -399955099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_54
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 539
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9211651258ae82a45a93663c708c2aa5
+      internalID: 1045713014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_55
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 539
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eaf96e38eb202154292b3b838ee59470
+      internalID: 207387130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_56
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 539
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09f712859daab224dae3d68337139072
+      internalID: -1585854069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_57
+      rect:
+        serializedVersion: 2
+        x: 1123
+        y: 539
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab807c2e6ff2e3a43beddeab22b1a5bc
+      internalID: -631712519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_58
+      rect:
+        serializedVersion: 2
+        x: 1205
+        y: 539
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0abd6933aeb3124448dfb850b2036461
+      internalID: 176466725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_59
+      rect:
+        serializedVersion: 2
+        x: 1287
+        y: 539
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fff84750d6b0484fb38e0611327612c
+      internalID: -28079974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_60
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 539
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb65cc1812282594f98653feb5c176a9
+      internalID: 1002646570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_61
+      rect:
+        serializedVersion: 2
+        x: 1451
+        y: 539
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dbe116a77647f843ae6ef6d6fb293e1
+      internalID: 209319327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_62
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 457
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19a29332fc87b6b4e816a499b056efe5
+      internalID: 1711649311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_63
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 457
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f626d258ed172634baf48e665ab214d8
+      internalID: 1281304815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_64
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 457
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbc43158af21381478c7269549b7ede9
+      internalID: 332697108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_65
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 457
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 153e0b6490610f447a1cdd275ceb8ec5
+      internalID: -1865756030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_66
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 457
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 643e6dc8da710d2448206f575d70ad0e
+      internalID: -548286030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_67
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 457
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 871c8c9e0d7a45e46849b2b6518ba845
+      internalID: -1755488317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_68
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 457
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f8124077ec4a7a4b9a55c0841da02be
+      internalID: 1383060004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_69
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 457
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff37c8c6b311f674ea84a6e3d3f3d58a
+      internalID: -1716420493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_70
+      rect:
+        serializedVersion: 2
+        x: 1123
+        y: 457
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 088f8dba37b216e4b8bbc564e3845e7f
+      internalID: -546508654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_71
+      rect:
+        serializedVersion: 2
+        x: 1205
+        y: 457
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b8c781dff2a67b4293dd95a965f1346
+      internalID: -1068907775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_72
+      rect:
+        serializedVersion: 2
+        x: 1287
+        y: 457
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81ea3d8ee92cf4a409375500b1c27e54
+      internalID: 1616656125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_73
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 457
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e69e0064cfbfce84bb1a6ecc7e6d72d4
+      internalID: -1773264030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_74
+      rect:
+        serializedVersion: 2
+        x: 1451
+        y: 457
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aeb421a4f7afcf944a0c5d5293331693
+      internalID: -1782932608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_75
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 375
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5db003a302144394daa16a8d42abc6be
+      internalID: 23495284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_76
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 375
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3f75824f8a270d41a8bbc6f0189674c
+      internalID: 2058602701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_77
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 375
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 957b8f7f42530214da7a8b284df9c0df
+      internalID: -1631029932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_78
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 375
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47d2739fe48e50147a3402b759c148e3
+      internalID: -948161708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_79
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 375
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 703c51ea43f482c4e982c74ecbffe008
+      internalID: 508539173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_80
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 375
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84ace2aaf7eb81444a389e34d2bf9cb8
+      internalID: -1526119634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_81
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 375
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6335344fdeffc44f80794e51ddc894e
+      internalID: 698853795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_82
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 375
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd8ac2fb7a416ff4d8b27792bc3996e7
+      internalID: -233185766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_83
+      rect:
+        serializedVersion: 2
+        x: 1123
+        y: 375
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2e39ee796315974e995d745f5c0e537
+      internalID: 1187634498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_84
+      rect:
+        serializedVersion: 2
+        x: 1205
+        y: 375
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 526c5313c983b7b4e83e5d1cefc7292e
+      internalID: 1796962709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_85
+      rect:
+        serializedVersion: 2
+        x: 1287
+        y: 375
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26d7b0bdbbba0ee42a12087c0f8c8b2c
+      internalID: 1793765075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_86
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 375
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56e71f56b213bd542aba7af1c6e59e1e
+      internalID: -283977652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_87
+      rect:
+        serializedVersion: 2
+        x: 1451
+        y: 375
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 439550c779a494b49833c8d6e7295cf1
+      internalID: -313982856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_88
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 293
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f10054721cd16744a48b5d5c86a6d8c
+      internalID: -1551108329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_89
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 293
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f337e406a99e9a7418874e2402d035e9
+      internalID: 709328420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_90
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 293
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d700b2f9315f36448eb92f62203d66d
+      internalID: 2041733787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_91
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 293
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed48dda5fc492534e8d6bffb3fb9a0ce
+      internalID: -1301878324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_92
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 293
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a92c1602ea3fa54ca9e084e74272398
+      internalID: -1599296719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_93
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 293
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea8e6329e5cd9564ebca78e0605cae5b
+      internalID: -778129064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_94
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 293
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c682aa1135df2247a7a4663bdf3cc90
+      internalID: -1290771540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_95
+      rect:
+        serializedVersion: 2
+        x: 1123
+        y: 293
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 158456494c7c92a4ab4b1e524c4f358f
+      internalID: -1096553225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_96
+      rect:
+        serializedVersion: 2
+        x: 1205
+        y: 293
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3060569e50eb664ea88b7733bf31625
+      internalID: -1862809255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_97
+      rect:
+        serializedVersion: 2
+        x: 1287
+        y: 293
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3132c72c30cc3cc46b27834c1b24ce88
+      internalID: 1321203355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_98
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 293
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3444697c57b1a94381e4c793ab2f566
+      internalID: -2003453609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_99
+      rect:
+        serializedVersion: 2
+        x: 1451
+        y: 293
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 704e759e6e6d6cf47983edfa855879b7
+      internalID: -712261906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_100
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 211
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6752c12bd4fc6243999ffc7c9555474
+      internalID: -1824126674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_101
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 211
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02550779cca521946a04fffdefe928ce
+      internalID: -67224596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_102
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 211
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 708915dac3da89345ac3ebf0812b1f98
+      internalID: -2140072930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_103
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 129
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6e1ba459a3535a43af2632f906e2b55
+      internalID: 337195381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_104
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 129
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: add4a65e710c9174c88bf1b488f637d5
+      internalID: -1446595871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: levle1-3_105
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 129
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd845eed5631586459440d48a0ebbbaf
+      internalID: -520597777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      levle1-3_54: 1045713014
+      levle1-3_22: 270990493
+      levle1-3_9: 1055676839
+      levle1-3_47: 1553540727
+      levle1-3_35: 1237806255
+      levle1-3_99: -712261906
+      levle1-3_82: -233185766
+      levle1-3_16: 597828148
+      levle1-3_10: 1274512675
+      levle1-3_70: -546508654
+      levle1-3_38: 1388208185
+      levle1-3_31: -277652324
+      levle1-3_57: -631712519
+      levle1-3_14: -692826842
+      levle1-3_65: -1865756030
+      levle1-3_4: 1552406055
+      levle1-3_83: 1187634498
+      levle1-3_93: -778129064
+      levle1-3_32: 1540113381
+      levle1-3_43: 911313080
+      levle1-3_67: -1755488317
+      levle1-3_0: 457729651
+      levle1-3_49: -1599958113
+      levle1-3_75: 23495284
+      levle1-3_80: -1526119634
+      levle1-3_3: -1634764968
+      levle1-3_15: -309975447
+      levle1-3_79: 508539173
+      levle1-3_81: 698853795
+      levle1-3_27: 1215136820
+      levle1-3_37: 571428678
+      levle1-3_36: 652120731
+      levle1-3_48: 1299288769
+      levle1-3_19: 104536987
+      levle1-3_61: 209319327
+      levle1-3_86: -283977652
+      levle1-3_39: -1693141723
+      levle1-3_20: 1101987140
+      levle1-3_76: 2058602701
+      levle1-3_34: 2028413881
+      levle1-3_44: -762909753
+      levle1-3_103: 337195381
+      levle1-3_105: -520597777
+      levle1-3_58: 176466725
+      levle1-3_56: -1585854069
+      levle1-3_66: -548286030
+      levle1-3_102: -2140072930
+      levle1-3_63: 1281304815
+      levle1-3_42: 874365639
+      levle1-3_97: 1321203355
+      levle1-3_91: -1301878324
+      levle1-3_101: -67224596
+      levle1-3_23: -1154538057
+      levle1-3_68: 1383060004
+      levle1-3_73: -1773264030
+      levle1-3_50: -2015462008
+      levle1-3_71: -1068907775
+      levle1-3_72: 1616656125
+      levle1-3_92: -1599296719
+      levle1-3_74: -1782932608
+      levle1-3_89: 709328420
+      levle1-3_7: -848488961
+      levle1-3_17: 1385704258
+      levle1-3_87: -313982856
+      levle1-3_60: 1002646570
+      levle1-3_29: 966648436
+      levle1-3_98: -2003453609
+      levle1-3_45: -261303293
+      levle1-3_95: -1096553225
+      levle1-3_59: -28079974
+      levle1-3_55: 207387130
+      levle1-3_13: -1477752015
+      levle1-3_6: -1249129625
+      levle1-3_84: 1796962709
+      levle1-3_5: -2056895754
+      levle1-3_77: -1631029932
+      levle1-3_64: 332697108
+      levle1-3_28: 988875789
+      levle1-3_52: -938588624
+      levle1-3_94: -1290771540
+      levle1-3_85: 1793765075
+      levle1-3_21: -574301027
+      levle1-3_2: 590437632
+      levle1-3_62: 1711649311
+      levle1-3_1: 7269464
+      levle1-3_53: -399955099
+      levle1-3_26: 1639086134
+      levle1-3_69: -1716420493
+      levle1-3_51: 408242270
+      levle1-3_88: -1551108329
+      levle1-3_33: -940970288
+      levle1-3_18: 206634293
+      levle1-3_24: -446256803
+      levle1-3_78: -948161708
+      levle1-3_25: 1113031938
+      levle1-3_40: -2078800306
+      levle1-3_100: -1824126674
+      levle1-3_41: 1849713906
+      levle1-3_46: -1534434603
+      levle1-3_11: -204489472
+      levle1-3_30: 637173693
+      levle1-3_104: -1446595871
+      levle1-3_8: 1595612230
+      levle1-3_90: 2041733787
+      levle1-3_96: -1862809255
+      levle1-3_12: -1177233925
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

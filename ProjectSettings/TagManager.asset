@@ -11,6 +11,8 @@ TagManager:
   - Dialogue1
   - Dialogue2
   - Dialogue3
+  - Boarder
+  - Floor
   layers:
   - Default
   - TransparentFX
@@ -50,6 +52,12 @@ TagManager:
     locked: 0
   - name: BackGround
     uniqueID: 2671528669
+    locked: 0
+  - name: Wall
+    uniqueID: 795402319
+    locked: 0
+  - name: Floor
+    uniqueID: 283577999
     locked: 0
   - name: Objects
     uniqueID: 1016752455

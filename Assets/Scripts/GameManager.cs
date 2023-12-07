@@ -9,8 +9,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    [SerializeField]private Sprite mainSceneLightBackground;
+    [SerializeField]private Sprite mainSceneNightBackground;
     private Camera mainCamera;
 
+    private GameObject mainSceneBackground;
     /// <summary>
     /// 由代码找到所有的Box tag的物体，根据总分判断是否达成目标
     /// </summary>
@@ -26,9 +29,33 @@ public class GameManager : MonoBehaviour
         isWin = true;
         mainCamera = Camera.main;
         mainCamera.orthographicSize = 9f;
+        mainSceneBackground = GameObject.Find("MainSceneBackground");
+#if UNITY_EDITOR
+        // BackgroundTest();
+        #endif
+        SetMainSceneBackground();
     }
 
+    #if UNITY_EDITOR
+    private void BackgroundTest(){
+        PlayerPrefs.SetInt("GameStatus", 1);
+    }
+    #endif
 
+    /// <summary>
+    /// 根据游戏状态设置主场景的背景，0为白天，1为夜晚，使用PlayerPrefs来存储
+    /// </summary>
+    private void SetMainSceneBackground()
+    {
+        if (PlayerPrefs.GetInt("GameStatus") == 0)
+        {
+            mainSceneBackground.GetComponent<SpriteRenderer>().sprite = mainSceneLightBackground;
+        }
+        else if(PlayerPrefs.GetInt("GameStatus") == 1)
+        {
+            mainSceneBackground.GetComponent<SpriteRenderer>().sprite = mainSceneNightBackground;
+        }
+    }
     private void Update()
     {
 #if UNITY_EDITOR
@@ -88,7 +115,6 @@ public class GameManager : MonoBehaviour
 
         // Application.Quit();
     }
-
 
 
     public static void StartDialogue(string dialogue)
@@ -151,6 +177,5 @@ public class GameManager : MonoBehaviour
 #endif
 
     }
-
     #endregion
 }
