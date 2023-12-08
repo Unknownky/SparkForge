@@ -43,7 +43,6 @@ public class TextManager : MonoBehaviour
     //获取人物的图片的材质来改变其alpha值
     private Material _characterImageMaterial;
 
-    private float _waitTime = 1.5f;//等待时间
     private void Awake()
     {
         if (Instance == null)
@@ -112,7 +111,7 @@ public class TextManager : MonoBehaviour
 
     private void ShowDialogueNameAndProcessPanel()
     {
-        string name = result[0].Substring(result[0].IndexOf("<")+2, result[0].IndexOf(">") - 2);
+        string name = result[0].Substring(result[0].IndexOf("<")+2, result[0].IndexOf(">") - 3);
         //显示对话人物名字
         _nameText.text = name;//显示人物名字
         //在本游戏中只需要处理主角的图片的alpha值即可

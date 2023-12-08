@@ -37,8 +37,7 @@ public class EventTrriger : MonoBehaviour
     /// 离开触发器
     /// </summary>
     /// <param name="collision"></param>
-    private void OnTrrigerExit2D(Collider2D collision)
-    {
+    private void OnTriggerExit2D(Collider2D collision) {
         #if UNITY_EDITOR
         Debug.Log(collision.gameObject.name + "离开触发器");
         #endif

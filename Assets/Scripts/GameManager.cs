@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -31,12 +32,12 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 由代码找到所有的Box tag的物体，根据总分判断是否达成目标
     /// </summary>
-    private GameObject[] targetObjects;
+    public GameObject[] targetObjects;
 
     /// <summary>
     /// 游戏通过这个变量来判断是否胜利
     /// </summary>
-    [HideInInspector] public bool isWin = false;
+    [Tooltip("是否达成通关条件")]public bool isWin = false;
 
     /// <summary>
     /// 当前关卡的逻辑
@@ -64,7 +65,7 @@ public class GameManager : MonoBehaviour
             Instance = this;
         else
             Destroy(this);
-        isWin = false;
+        Instance.isWin = false;
         mainCamera = Camera.main;
         mainCamera.orthographicSize = 9f;
         mainSceneBackground = GameObject.Find("MainSceneBackground");
@@ -101,7 +102,7 @@ public class GameManager : MonoBehaviour
         //判断当前的关卡，如果为Level_1开头的场景，则加载Level_1的输入逻辑
         //根据关卡加载对应的输入逻辑
         MatchCurrentLevelLogic();
-        targetObjects = GameObject.FindGameObjectsWithTag("Box");
+        Instance.targetObjects = GameObject.FindGameObjectsWithTag("Box");
         LoadCurrentLevelLogic(levelLogic);
     }
 
@@ -113,11 +114,12 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("当前关卡" + SceneManager.GetActiveScene().name);
 #endif
+        isWin = false;
         Instance.isWin = false;
         //判断当前的关卡，如果为Level_1开头的场景，则加载Level_1的输入逻辑
         //根据关卡加载对应的输入逻辑
         MatchCurrentLevelLogic();
-        targetObjects = GameObject.FindGameObjectsWithTag("Box");
+        Instance.targetObjects = GameObject.FindGameObjectsWithTag("Box");
         LoadCurrentLevelLogic(levelLogic);
     }
 
@@ -262,7 +264,7 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.O))
         {
-            GameManager.Instance.isWin = true;
+            Instance.isWin = true;
         }
         if(Input.GetKeyDown(KeyCode.P)){
             LoadNextScene();
@@ -344,12 +346,13 @@ public class GameManager : MonoBehaviour
 
     public void CheckWin()
     {
+        Instance.targetObjects = GameObject.FindGameObjectsWithTag("Box");
+
 #if UNITY_EDITOR
         Debug.Log("检查胜利条件");
 #endif
         bool temp = true;
-        targetObjects = GameObject.FindGameObjectsWithTag("Box");
-        foreach (var targetObject in targetObjects)
+        foreach (var targetObject in Instance.targetObjects)
         {
             temp = temp && targetObject.GetComponent<ObjectController>().getGoal;
 #if UNITY_EDITOR
@@ -358,10 +361,11 @@ public class GameManager : MonoBehaviour
         }
         Instance.isWin = temp;
 #if UNITY_EDITOR
-        Debug.Log("当前胜利状态" + isWin);
+        Debug.Log("CheckWin中当前胜利状态" + isWin);
+        Debug.Log("在CheckWin中检查Instance的胜利条件" + GameManager.Instance.isWin);
 #endif
 
-        if (isWin)
+        if (Instance.isWin)
         { // 如果所有的箱子都到达了目的地
 #if UNITY_EDITOR
             Debug.Log("游戏胜利");
@@ -477,7 +481,7 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("初始化Level_41"+"播放剧情4-A");
 #endif
-        foreach (var box in targetObjects)
+        foreach (var box in Instance.targetObjects)
         {
             box.GetComponent<ObjectController>().getGoal = false; //全部设置为到达目的地，进入判定区域时设置为false，出去时设置为true
         }
@@ -498,7 +502,7 @@ public class GameManager : MonoBehaviour
         if (GameManager.Instance.isWin)
         {
             //TODO:进行剧情的播放
-
+            LoadScene("Level_1-2");
         }
     }
 
@@ -522,6 +526,10 @@ public class GameManager : MonoBehaviour
 
     public void Level_21Win()
     {
+        #if UNITY_EDITOR
+        Debug.Log("在Levelwin中检查Instance的胜利条件" + GameManager.Instance.isWin);
+        Debug.Log("检查胜利条件" + isWin);
+        #endif
         if (GameManager.Instance.isWin)
         {
             LoadScene("Level_2-2");
@@ -530,7 +538,9 @@ public class GameManager : MonoBehaviour
 
     public void Level_22Win()
     {
-
+        #if UNITY_EDITOR
+        Debug.Log("检查Instance的胜利条件" + GameManager.Instance.isWin);
+        #endif
         if (GameManager.Instance.isWin)
         {
             LoadScene("Level_2-3");
@@ -539,7 +549,7 @@ public class GameManager : MonoBehaviour
 
     public void Level_23Win()
     {
-        foreach (var box in targetObjects)
+        foreach (var box in Instance.targetObjects)
         {
             if (box.GetComponent<ObjectController>().getGoal == false)
             {

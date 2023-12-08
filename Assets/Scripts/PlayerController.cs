@@ -108,7 +108,14 @@ public class PlayerController : MonoBehaviour
     {
         if (gameObject.tag == "Player")
         {
-            return;
+            if(isUnmoveable)
+            {
+                return;
+            }
+            else
+            {
+                Level_1_Input();
+            }
         }
         else if (gameObject.tag == "Box")
         {
