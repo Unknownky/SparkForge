@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,6 +23,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Sprite mainSceneLightBackground;
     [SerializeField] private Sprite mainSceneNightBackground;
 
+    [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private DialogueContainer dialogueContainer;
     private Camera mainCamera;
 
@@ -58,6 +57,11 @@ public class GameManager : MonoBehaviour
     private static AsyncOperation asyncOperation;
 
     private string currentSceneName => SceneManager.GetActiveScene().name;
+
+    /// <summary>
+    /// 是否已经显示过对话，避免重复对话
+    /// </summary>
+    private bool isResetCondition;
 
     private void Awake()
     {
@@ -109,13 +113,15 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 用来在切换场景时进行初始化
     /// </summary>
-    private void GameManagerInit()
+    private void GameManagerInit(bool isReset)
     {
 #if UNITY_EDITOR
         Debug.Log("当前关卡" + SceneManager.GetActiveScene().name);
+        Debug.Log("进行GameManager的初始化,是否重置" + isReset);
 #endif
         isWin = false;
         Instance.isWin = false;
+        Instance.isResetCondition = isReset;
         //判断当前的关卡，如果为Level_1开头的场景，则加载Level_1的输入逻辑
         //根据关卡加载对应的输入逻辑
         MatchCurrentLevelLogic();
@@ -258,8 +264,9 @@ public class GameManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            //重新加载场景
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Instance.isResetCondition = true;
+            //重新加载场景，使用GameManager的方法
+            LoadScene(SceneManager.GetActiveScene().name);
         }
 
 #endif //用于代码测试
@@ -283,8 +290,6 @@ public class GameManager : MonoBehaviour
         {
             //重新加载场景
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            //重新初始化
-            GameManagerInit();
         }
 
     }
@@ -294,8 +299,9 @@ public class GameManager : MonoBehaviour
     IEnumerator LoadSceneAfterAsync()
     {
         yield return asyncOperation;
-        GameManagerInit();
+        GameManagerInit(Instance.isResetCondition);
     }
+
 
 
     #region 事件触发函数
@@ -419,9 +425,11 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("初始化Level_11");
 #endif
-
-        TextManager.Instance.StartDialogueSystem(GetDialogue("1-A").dialogue);
-
+        if(!Instance.isResetCondition)
+            TextManager.Instance.StartDialogueSystem(GetDialogue("1-A").dialogue);
+        else{
+            Instance.isResetCondition = false;
+        }
     }
 
     private void Level_12Init()
@@ -429,7 +437,11 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("初始化Level_12");
 #endif
-        TextManager.Instance.StartDialogueSystem(GetDialogue("1-B").dialogue);
+        if(!Instance.isResetCondition)
+            TextManager.Instance.StartDialogueSystem(GetDialogue("1-B").dialogue);
+        else{
+            Instance.isResetCondition = false;
+        }
     }
 
     private void Level_13Init()
@@ -437,7 +449,11 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("初始化Level_13");
 #endif
-        TextManager.Instance.StartDialogueSystem(GetDialogue("1-C").dialogue);
+        if(!Instance.isResetCondition)
+            TextManager.Instance.StartDialogueSystem(GetDialogue("1-C").dialogue);
+        else{
+            Instance.isResetCondition = false;
+        }
     }
 
     private void Level_21Init()
@@ -445,7 +461,11 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("初始化Level_21");
 #endif
-        TextManager.Instance.StartDialogueSystem(GetDialogue("2-A").dialogue);
+        if(!Instance.isResetCondition)
+            TextManager.Instance.StartDialogueSystem(GetDialogue("2-A").dialogue);
+        else{
+            Instance.isResetCondition = false;
+        }
     }
 
     private void Level_22Init()
@@ -453,7 +473,11 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("初始化Level_22");
 #endif
-        TextManager.Instance.StartDialogueSystem(GetDialogue("2-B").dialogue);
+        if(!Instance.isResetCondition)
+            TextManager.Instance.StartDialogueSystem(GetDialogue("2-B").dialogue);
+        else{
+            Instance.isResetCondition = false;
+        }
     }
 
     private void Level_23Init()
@@ -465,7 +489,11 @@ public class GameManager : MonoBehaviour
         {
             box.GetComponent<ObjectController>().getGoal = false; //全部设置为到达目的地，进入判定区域时设置为false，出去时设置为true
         }
-        TextManager.Instance.StartDialogueSystem(GetDialogue("2-C").dialogue);
+        if(!Instance.isResetCondition)
+            TextManager.Instance.StartDialogueSystem(GetDialogue("2-C").dialogue);
+        else{
+            Instance.isResetCondition = false;
+        }
     }
 
     private void Level_31Init()
@@ -474,7 +502,11 @@ public class GameManager : MonoBehaviour
         Debug.Log("初始化Level_31");
 #endif
         // TextManager.Instance.StartDialogueSystem(GetDialogue("3-A").dialogue);
-        TextManager.Instance.StartCoroutine(GetDialogue("3-A").dialogue);
+        if(!Instance.isResetCondition)
+            TextManager.Instance.StartDialogueSystem(GetDialogue("2-C").dialogue);
+        else{
+            Instance.isResetCondition = false;
+        }
     }
 
     private void Level_32Init()
@@ -482,7 +514,11 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("初始化Level_32");
 #endif
-        TextManager.Instance.StartDialogueSystem(GetDialogue("3-B").dialogue);
+        if(!Instance.isResetCondition)
+            TextManager.Instance.StartDialogueSystem(GetDialogue("3-B").dialogue);
+        else{
+            Instance.isResetCondition = false;
+        }
     }
 
     private void Level_33Init()
@@ -490,7 +526,11 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("初始化Level_33");
 #endif
-
+        if(!Instance.isResetCondition)
+            TextManager.Instance.StartDialogueSystem("<#作者>剧情3-C还未完成<finish>");
+        else{
+            Instance.isResetCondition = false;
+        }
     }
 
 
@@ -502,6 +542,11 @@ public class GameManager : MonoBehaviour
         foreach (var box in Instance.targetObjects)
         {
             box.GetComponent<ObjectController>().getGoal = false; //全部设置为到达目的地，进入判定区域时设置为false，出去时设置为true
+        }
+        if(!Instance.isResetCondition)
+            TextManager.Instance.StartDialogueSystem("<#作者>剧情4-A还未完成<finish>");
+        else{
+            Instance.isResetCondition = false;
         }
     }
 
@@ -538,7 +583,8 @@ public class GameManager : MonoBehaviour
 
         PlayerPrefs.SetInt("level_1", 1);
         //TODO:进行剧情的播放
-        LoadScene("Level_2-1");
+        TextManager.Instance.StartDialogueSystem("<#作者>1-D剧情还未完成<finish>");
+        StartCoroutine(WaitUntilDialogueFinishThenLoadScene("Level_0-1"));
     
     }
 
@@ -575,6 +621,8 @@ public class GameManager : MonoBehaviour
             }
         }
         //TODO:进行剧情的播放
+        TextManager.Instance.StartDialogueSystem(GetDialogue("2-D").dialogue);
+        StartCoroutine(WaitUntilDialogueFinishThenLoadScene("Level_0-1"));
         PlayerPrefs.SetInt("level_2", 1);
     }
 
@@ -582,7 +630,10 @@ public class GameManager : MonoBehaviour
     {
         if (GameManager.Instance.isWin)
         {
-
+            #if UNITY_EDITOR
+            Debug.Log("level31检查胜利条件" + isWin);
+            #endif
+            LoadScene("Level_3-2");
         }
     }
 
@@ -599,7 +650,7 @@ public class GameManager : MonoBehaviour
         if (GameManager.Instance.isWin)
         {
             PlayerPrefs.SetInt("level_3", 1);
-
+            StartCoroutine(WaitUntilDialogueFinishThenLoadScene("Level_0-1"));
         }
     }
 
@@ -608,9 +659,22 @@ public class GameManager : MonoBehaviour
         if (GameManager.Instance.isWin)
         {
             PlayerPrefs.SetInt("level_4", 1);
+            TextManager.Instance.StartDialogueSystem("<#作者>剧情4-B还未完成<finish>");
+            StartCoroutine(WaitUntilDialogueFinishThenLoadScene("Level_0-1"));
         }
     }
     #endregion
 
-
+    /// <summary>
+    /// 协程等待对话结束
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator WaitUntilDialogueFinishThenLoadScene(string sceneName)
+    {
+        while(dialoguePanel.activeSelf)
+        {
+            yield return new WaitForSecondsRealtime(0.2f);
+        }
+        LoadScene(sceneName);
+    }
 }

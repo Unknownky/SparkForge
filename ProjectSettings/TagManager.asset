@@ -13,6 +13,7 @@ TagManager:
   - Dialogue3
   - Boarder
   - Floor
+  - ShadowBox
   layers:
   - Default
   - TransparentFX
@@ -47,11 +48,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: BackGround
     uniqueID: 2671528669
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: Wall
     uniqueID: 795402319
