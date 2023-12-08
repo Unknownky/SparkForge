@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -204,26 +203,6 @@ public class PlayerController : MonoBehaviour
 #if UNITY_EDITOR
                 Debug.Log("人物射线检测击中物体tag" + hitObjectTag);
 #endif
-                if(GameManager.Instance.levelLogic == LevelLogic.Level_3){
-                    switch(hitObjectTag){
-                        case "Boarder":
-                            return false;
-                        case "Wall":
-                            if (inverseControl) //反向代码的逻辑
-                                return true;
-                            return false;
-                        case "Floor":
-                            if (inverseControl)
-                            {
-                                return false;
-                            }
-                            return true;
-                            
-
-
-                    }
-
-                }
                 switch (hitObjectTag)
                 {
                     case "Boarder":
@@ -241,6 +220,9 @@ public class PlayerController : MonoBehaviour
                             return false;
                         }
                         return true;
+                    case "ShadowBox":
+                        return false;
+
                     case "Box":
                         obj = raycastHit2D.collider.gameObject;
                         objectController = obj.GetComponent<ObjectController>();

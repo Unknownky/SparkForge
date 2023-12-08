@@ -110,6 +110,13 @@ public class GameManager : MonoBehaviour
         LoadCurrentLevelLogic(levelLogic);
     }
 
+    
+    IEnumerator LoadSceneAfterAs()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+        GameManagerInit(Instance.isResetCondition);
+    }
+
     /// <summary>
     /// 用来在切换场景时进行初始化
     /// </summary>
@@ -223,11 +230,11 @@ public class GameManager : MonoBehaviour
 
         if (PlayerPrefs.GetInt("GameStatus") == 0)
         {
-            mainSceneBackground.GetComponent<SpriteRenderer>().sprite = mainSceneLightBackground;
+            // mainSceneBackground.GetComponent<SpriteRenderer>().sprite = mainSceneLightBackground;
         }
         else if (PlayerPrefs.GetInt("GameStatus") == 1)
         {
-            mainSceneBackground.GetComponent<SpriteRenderer>().sprite = mainSceneNightBackground;
+            // mainSceneBackground.GetComponent<SpriteRenderer>().sprite = mainSceneNightBackground;
         }
     }
     private void Update()
@@ -272,7 +279,7 @@ public class GameManager : MonoBehaviour
 #endif //用于代码测试
 
 
-#if UNITY_EDITOR
+
         if (Input.GetKeyDown(KeyCode.Escape)) //退回主场景
         {
             ReturnToMainScene();
@@ -284,7 +291,6 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.P)){    //直接加载下一关
             LoadNextScene();
         }
-#endif
 
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -296,30 +302,23 @@ public class GameManager : MonoBehaviour
 
 
 
-    IEnumerator LoadSceneAfterAsync()
-    {
-        yield return asyncOperation;
-        GameManagerInit(Instance.isResetCondition);
-    }
-
-
 
     #region 事件触发函数
-    public static void ReturnToMainScene()
+    public void ReturnToMainScene()
     {
         ResetGameStatus();
         LoadScene("Level_0-1");
     }
 
-    public static void LoadNextScene(){
+    public void LoadNextScene(){
         asyncOperation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex+1);
-        Instance.StartCoroutine(Instance.LoadSceneAfterAsync());
+        StartCoroutine(LoadSceneAfterAs());
     }
 
-    public static void LoadScene(string sceneName)
+    public void LoadScene(string sceneName)
     {
         asyncOperation = SceneManager.LoadSceneAsync(sceneName);
-        Instance.StartCoroutine(Instance.LoadSceneAfterAsync());
+        StartCoroutine(LoadSceneAfterAs());
     }
 
     public static void QuitGame()
@@ -584,7 +583,8 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("level_1", 1);
         //TODO:进行剧情的播放
         TextManager.Instance.StartDialogueSystem("<#作者>1-D剧情还未完成<finish>");
-        StartCoroutine(WaitUntilDialogueFinishThenLoadScene("Level_0-1"));
+        LoadScene("Level_0-1");
+        // StartCoroutine(WaitUntilDialogueFinishThenLoadScene("Level_0-1"));
     
     }
 

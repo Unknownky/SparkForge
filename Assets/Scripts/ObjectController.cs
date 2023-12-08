@@ -54,18 +54,20 @@ public class ObjectController : MonoBehaviour
     /// </summary>
     /// <param name="direction"></param>
     /// <returns></returns>
-    public Vector3 LevelBoxMoveDirectionFix(Vector3 direction){
+    public Vector3 LevelBoxMoveDirectionFix(Vector3 direction)
+    {
         //在这里进行位置的更新来适应shadowObject的移动检测(第四关的逻辑修正)
-        if(haveShadowObject){
-            if(direction == Vector3.up)
+        if (haveShadowObject)
+        {
+            if (direction == Vector3.up)
                 direction = Vector3.down;
-            else if(direction == Vector3.down)
+            else if (direction == Vector3.down)
                 direction = Vector3.up;
-            else if(direction == Vector3.left)
+            else if (direction == Vector3.left)
                 direction = Vector3.left;
-            else if(direction == Vector3.right)
+            else if (direction == Vector3.right)
                 direction = Vector3.right;
-            else if(direction == Vector3.zero)
+            else if (direction == Vector3.zero)
                 direction = Vector3.zero;
         }
         return direction;
@@ -79,9 +81,9 @@ public class ObjectController : MonoBehaviour
         if (raycastHit2D)
         {
             string hitObjectTag = raycastHit2D.collider.gameObject.tag;
-            #if UNITY_EDITOR
-            Debug.Log("箱子射线检测击中"+hitObjectTag);
-            #endif
+#if UNITY_EDITOR
+            Debug.Log("箱子射线检测击中" + hitObjectTag);
+#endif
             if (PlayerController.levelLogic == LevelLogic.Level_3)//第三关的逻辑
             {
                 if (hitObjectTag == "Boarder")
@@ -96,7 +98,8 @@ public class ObjectController : MonoBehaviour
                 {
                     return false;
                 }
-                else if(hitObjectTag == "PublicArea"){
+                else if (hitObjectTag == "PublicArea")
+                {
                     return true;
                 }
                 else if (hitObjectTag == "Floor" || hitObjectTag == "Wall") //箱子在边界上，且箱子会先打到边界(先于箱子、角色、边界)，那么在进行一次射线检测
@@ -104,21 +107,22 @@ public class ObjectController : MonoBehaviour
                     RaycastHit2D newraycastHit2D = Physics2D.Raycast(transform.position + direction * reraycastCenterOffset, direction, raycasetDistance / 2);
                     if (newraycastHit2D)
                     {
-                        
-#if UNITY_EDITOR    
-                        Debug.Log("箱子再次射线检测击中物体"+newraycastHit2D.collider.gameObject.tag);
-                        #endif
+
+#if UNITY_EDITOR
+                        Debug.Log("箱子再次射线检测击中物体" + newraycastHit2D.collider.gameObject.tag);
+#endif
                         if (newraycastHit2D.collider.gameObject.tag == "Box")
                         {
                             return false;
                         }
                         else if (newraycastHit2D.collider.gameObject.tag == "Player")
                             return false;
-                        else if(newraycastHit2D.collider.gameObject.tag == "Boarder")
+                        else if (newraycastHit2D.collider.gameObject.tag == "Boarder")
                         {
                             return false;
                         }
-                        else{
+                        else
+                        {
                             return true;
                         }
 
@@ -129,6 +133,10 @@ public class ObjectController : MonoBehaviour
             else
             {
                 if (hitObjectTag == "Wall")
+                {
+                    return false;
+                }
+                else if (hitObjectTag == "ShadowBox")
                 {
                     return false;
                 }
@@ -170,9 +178,9 @@ public class ObjectController : MonoBehaviour
         Gizmos.DrawLine(transform.position + Vector3.left * centerOffset, transform.position + Vector3.left * centerOffset + Vector3.left * raycasetDistance);
         Gizmos.DrawLine(transform.position + Vector3.right * centerOffset, transform.position + Vector3.right * centerOffset + Vector3.right * raycasetDistance);
         Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position + Vector3.up*reraycastCenterOffset,  transform.position + Vector3.up + Vector3.up*raycasetDistance / 2);
-        Gizmos.DrawLine(transform.position + Vector3.down*reraycastCenterOffset,  transform.position + Vector3.down + Vector3.down*raycasetDistance / 2);
-        Gizmos.DrawLine(transform.position + Vector3.left*reraycastCenterOffset,  transform.position + Vector3.left + Vector3.left*raycasetDistance / 2);
-        Gizmos.DrawLine(transform.position + Vector3.right*reraycastCenterOffset,  transform.position + Vector3.right +Vector3.right*raycasetDistance / 2);
+        Gizmos.DrawLine(transform.position + Vector3.up * reraycastCenterOffset, transform.position + Vector3.up + Vector3.up * raycasetDistance / 2);
+        Gizmos.DrawLine(transform.position + Vector3.down * reraycastCenterOffset, transform.position + Vector3.down + Vector3.down * raycasetDistance / 2);
+        Gizmos.DrawLine(transform.position + Vector3.left * reraycastCenterOffset, transform.position + Vector3.left + Vector3.left * raycasetDistance / 2);
+        Gizmos.DrawLine(transform.position + Vector3.right * reraycastCenterOffset, transform.position + Vector3.right + Vector3.right * raycasetDistance / 2);
     }
 }

@@ -212,7 +212,7 @@ public class AdvancedText : TextMeshProUGUI
 #if UNITY_EDITOR
                 Debug.Log("触发了标签事件rain");
 #endif
-                RainInvoke();
+                // RainInvoke();
                 break;
             case LabelContainer.finish_L:
 #if UNITY_EDITOR
@@ -236,11 +236,12 @@ public class AdvancedText : TextMeshProUGUI
         TextManager.Instance.ShowNameAndFirstSentence();//显示下一句话
     }
 
+    #if UNITY_EDITOR
     private void RainInvoke()
     {
         TextManager.Instance._background.GetComponent<SpriteRenderer>().sprite = TextManager.Instance._Rainbackground;
     }
-
+    #endif
     IEnumerator FinishInvoke()
     {
         while (!Input.GetMouseButtonDown(0))
