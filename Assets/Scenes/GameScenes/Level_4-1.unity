@@ -388,7 +388,7 @@ PrefabInstance:
     - target: {fileID: 8543318456955178635, guid: a7bc851d5b5e2194da223fe6a9f3f081,
         type: 3}
       propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8543318456955178635, guid: a7bc851d5b5e2194da223fe6a9f3f081,
         type: 3}
@@ -541,7 +541,7 @@ PrefabInstance:
     - target: {fileID: 8543318456955178635, guid: a7bc851d5b5e2194da223fe6a9f3f081,
         type: 3}
       propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8543318456955178635, guid: a7bc851d5b5e2194da223fe6a9f3f081,
         type: 3}
@@ -694,7 +694,7 @@ PrefabInstance:
     - target: {fileID: 8543318456955178635, guid: a7bc851d5b5e2194da223fe6a9f3f081,
         type: 3}
       propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8543318456955178635, guid: a7bc851d5b5e2194da223fe6a9f3f081,
         type: 3}
@@ -939,7 +939,7 @@ PrefabInstance:
     - target: {fileID: 8543318456955178635, guid: a7bc851d5b5e2194da223fe6a9f3f081,
         type: 3}
       propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8543318456955178635, guid: a7bc851d5b5e2194da223fe6a9f3f081,
         type: 3}
@@ -3711,7 +3711,7 @@ PrefabInstance:
     - target: {fileID: 8543318456955178635, guid: a7bc851d5b5e2194da223fe6a9f3f081,
         type: 3}
       propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8543318456955178635, guid: a7bc851d5b5e2194da223fe6a9f3f081,
         type: 3}
@@ -3864,7 +3864,7 @@ PrefabInstance:
     - target: {fileID: 8543318456955178635, guid: a7bc851d5b5e2194da223fe6a9f3f081,
         type: 3}
       propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8543318456955178635, guid: a7bc851d5b5e2194da223fe6a9f3f081,
         type: 3}

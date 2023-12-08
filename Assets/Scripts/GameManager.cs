@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
     // 异步加载操作对象
     private static AsyncOperation asyncOperation;
 
-
+    private string currentSceneName => SceneManager.GetActiveScene().name;
 
     private void Awake()
     {
@@ -80,9 +80,9 @@ public class GameManager : MonoBehaviour
         foreach (var dialogue in dialogueContainer?.dialogues)
         {
             Instance.dialogueDictionary.Add(dialogue.dialogueName, dialogue);
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             Debug.Log("添加了对话" + dialogue.dialogueName);
-            #endif
+#endif
         }
     }
 
@@ -113,6 +113,7 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("当前关卡" + SceneManager.GetActiveScene().name);
 #endif
+        Instance.isWin = false;
         //判断当前的关卡，如果为Level_1开头的场景，则加载Level_1的输入逻辑
         //根据关卡加载对应的输入逻辑
         MatchCurrentLevelLogic();
@@ -159,11 +160,28 @@ public class GameManager : MonoBehaviour
                 Level_01Init();
                 break;
             case LevelLogic.Level_1:
-                Level_11Init();
+                if (currentSceneName == "Level_1-1")
+                    Level_11Init();
+                else if (currentSceneName == "Level_1-2")
+                    Level_12Init();
+                else if (currentSceneName == "Level_1-3")
+                    Level_13Init();
                 break;
             case LevelLogic.Level_2:
+                if (currentSceneName == "Level_2-1")
+                    Level_21Init();
+                else if (currentSceneName == "Level_2-2")
+                    Level_22Init();
+                else if (currentSceneName == "Level_2-3")
+                    Level_23Init();
                 break;
             case LevelLogic.Level_3:
+                if (currentSceneName == "Level_3-1")
+                    Level_31Init();
+                else if (currentSceneName == "Level_3-2")
+                    Level_32Init();
+                else if (currentSceneName == "Level_3-3")
+                    Level_33Init();
                 break;
             case LevelLogic.Level_4:
                 Level_4XInit();
@@ -173,37 +191,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    #region 关卡初始化逻辑
-    private void Level_01Init()
-    {
-        SetMainSceneBackground();
-    }
 
-    private void Level_11Init()
-    {
-
-        TextManager.Instance.StartDialogueSystem(GetDialogue("1-A").dialogue);
-
-    }
-
-    private void Level_23Init()
-    {
-        _level_23Objects = GameObject.FindGameObjectsWithTag("Box");
-        foreach (var box in _level_23Objects)
-        {
-            box.GetComponent<ObjectController>().getGoal = false; //全部设置为到达目的地，进入判定区域时设置为false，出去时设置为true
-        }
-    }
-
-    private void Level_4XInit()
-    {
-        foreach (var box in targetObjects)
-        {
-            box.GetComponent<ObjectController>().getGoal = false; //全部设置为到达目的地，进入判定区域时设置为false，出去时设置为true
-        }
-    }
-
-    #endregion
 
     private void BackgroundTest()
     {
@@ -236,9 +224,6 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-
-
-
 #if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
         {
@@ -278,8 +263,11 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.O))
         {
             GameManager.Instance.isWin = true;
-            TextManager.Instance.StartDialogueSystem("完结");
         }
+        if(Input.GetKeyDown(KeyCode.P)){
+            LoadNextScene();
+        }
+
 #endif
     }
 
@@ -295,6 +283,11 @@ public class GameManager : MonoBehaviour
     {
         ResetGameStatus();
         LoadScene("Level_0-1");
+    }
+
+    public static void LoadNextScene(){
+        asyncOperation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex+1);
+        Instance.StartCoroutine(Instance.LoadSceneAfterAsync());
     }
 
     public static void LoadScene(string sceneName)
@@ -392,65 +385,161 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    //TODO
-    #region 各个关卡胜利进行逻辑
-    public void Level_11Win(string dialogueName)
+
+    #region 关卡初始化逻辑
+    private void Level_01Init()
+    {
+        SetMainSceneBackground();
+    }
+
+    private void Level_11Init()
     {
 #if UNITY_EDITOR
-        Debug.Log("检查胜利条件"+GameManager.Instance.isWin);
-        #endif
+        Debug.Log("初始化Level_11");
+#endif
 
-        if (GameManager.Instance.isWin)
-        {
-            //TODO:进行剧情的播放
-            TextManager.Instance.StartDialogueSystem(GetDialogue(dialogueName).dialogue);
-
-        }
-    }
-
-    public void Level_12Win(string dialogueName)
-    {
-        if (GameManager.Instance.isWin)
-        {
-            //TODO:进行剧情的播放
-            TextManager.Instance.StartDialogueSystem(GetDialogue(dialogueName).dialogue);
-        }
+        TextManager.Instance.StartDialogueSystem(GetDialogue("1-A").dialogue);
 
     }
-    public void Level_13Win(string dialogueName)
+
+    private void Level_12Init()
     {
-        if (GameManager.Instance.isWin)
-        {
-            PlayerPrefs.SetInt("level_1", 1);
-            //TODO:进行剧情的播放
-            TextManager.Instance.StartDialogueSystem(GetDialogue(dialogueName).dialogue);
-        }
+#if UNITY_EDITOR
+        Debug.Log("初始化Level_12");
+#endif
+        TextManager.Instance.StartDialogueSystem(GetDialogue("1-B").dialogue);
     }
 
-    public void Level_21Win(string dialogueName)
+    private void Level_13Init()
     {
-        if (GameManager.Instance.isWin)
-        {
-            TextManager.Instance.StartDialogueSystem(GetDialogue(dialogueName).dialogue);
-
-        }
+#if UNITY_EDITOR
+        Debug.Log("初始化Level_13");
+#endif
+        TextManager.Instance.StartDialogueSystem(GetDialogue("1-C").dialogue);
     }
 
-    public void Level_22Win(string dialogueName)
+    private void Level_21Init()
     {
-        #if UNITY_EDITOR
-        Debug.Log("对话名"+dialogueName);
-        #endif
-        if (GameManager.Instance.isWin)
-        {
-            TextManager.Instance.StartDialogueSystem(GetDialogue(dialogueName).dialogue);
-
-        }
+#if UNITY_EDITOR
+        Debug.Log("初始化Level_21");
+#endif
+        TextManager.Instance.StartDialogueSystem(GetDialogue("2-A").dialogue);
     }
 
-    public void Level_23Win(string dialogueName)
+    private void Level_22Init()
     {
+#if UNITY_EDITOR
+        Debug.Log("初始化Level_22");
+#endif
+        TextManager.Instance.StartDialogueSystem(GetDialogue("2-B").dialogue);
+    }
+
+    private void Level_23Init()
+    {
+#if UNITY_EDITOR
+        Debug.Log("初始化Level_23");
+#endif
+        _level_23Objects = GameObject.FindGameObjectsWithTag("Box");
         foreach (var box in _level_23Objects)
+        {
+            box.GetComponent<ObjectController>().getGoal = false; //全部设置为到达目的地，进入判定区域时设置为false，出去时设置为true
+        }
+        TextManager.Instance.StartDialogueSystem(GetDialogue("2-C").dialogue);
+    }
+    private void Level_31Init()
+    {
+#if UNITY_EDITOR
+        Debug.Log("初始化Level_31");
+#endif
+        // TextManager.Instance.StartDialogueSystem(GetDialogue("3-A").dialogue);
+        TextManager.Instance.StartCoroutine(GetDialogue("3-A").dialogue);
+    }
+
+    private void Level_32Init()
+    {
+#if UNITY_EDITOR
+        Debug.Log("初始化Level_32");
+#endif
+        TextManager.Instance.StartDialogueSystem(GetDialogue("3-B").dialogue);
+    }
+
+    private void Level_33Init()
+    {
+#if UNITY_EDITOR
+        Debug.Log("初始化Level_33");
+#endif
+
+    }
+
+
+    private void Level_4XInit()
+    {
+#if UNITY_EDITOR
+        Debug.Log("初始化Level_41"+"播放剧情4-A");
+#endif
+        foreach (var box in targetObjects)
+        {
+            box.GetComponent<ObjectController>().getGoal = false; //全部设置为到达目的地，进入判定区域时设置为false，出去时设置为true
+        }
+    }
+
+
+    #endregion
+
+
+    //TODO
+    #region 各个关卡胜利进行逻辑
+    public void Level_11Win()
+    {
+#if UNITY_EDITOR
+        Debug.Log("检查胜利条件" + GameManager.Instance.isWin);
+#endif
+
+        if (GameManager.Instance.isWin)
+        {
+            //TODO:进行剧情的播放
+
+        }
+    }
+
+    public void Level_12Win()
+    {
+        if (GameManager.Instance.isWin)
+        {
+            //TODO:进行剧情的播放
+            LoadScene("Level_1-3");
+        }
+
+    }
+    public void Level_13Win()
+    {
+
+        PlayerPrefs.SetInt("level_1", 1);
+        //TODO:进行剧情的播放
+        LoadScene("Level_2-1");
+    
+    }
+
+    public void Level_21Win()
+    {
+        if (GameManager.Instance.isWin)
+        {
+            LoadScene("Level_2-2");
+        }
+    }
+
+    public void Level_22Win()
+    {
+
+        if (GameManager.Instance.isWin)
+        {
+            LoadScene("Level_2-3");
+        }
+    }
+
+    public void Level_23Win()
+    {
+        foreach (var box in targetObjects)
         {
             if (box.GetComponent<ObjectController>().getGoal == false)
             {
@@ -458,45 +547,40 @@ public class GameManager : MonoBehaviour
             }
         }
         //TODO:进行剧情的播放
-        TextManager.Instance.StartDialogueSystem(dialogueName);
         PlayerPrefs.SetInt("level_2", 1);
 
     }
 
-    public void Level_31Win(string dialogueName)
+    public void Level_31Win()
     {
         if (GameManager.Instance.isWin)
         {
-            TextManager.Instance.StartDialogueSystem(GetDialogue(dialogueName).dialogue);
 
         }
     }
 
-    public void Level_32Win(string dialogueName)
+    public void Level_32Win()
     {
         if (GameManager.Instance.isWin)
         {
-            TextManager.Instance.StartDialogueSystem(GetDialogue(dialogueName).dialogue);
 
         }
     }
 
-    public void Level_33Win(string dialogueName)
+    public void Level_33Win()
     {
         if (GameManager.Instance.isWin)
         {
             PlayerPrefs.SetInt("level_3", 1);
-            TextManager.Instance.StartDialogueSystem(GetDialogue(dialogueName).dialogue);
 
         }
     }
 
-    public void Level_4XWin(string dialogueName)
+    public void Level_4XWin()
     {
         if (GameManager.Instance.isWin)
         {
             PlayerPrefs.SetInt("level_4", 1);
-            TextManager.Instance.StartDialogueSystem(GetDialogue(dialogueName).dialogue);
         }
     }
     #endregion
