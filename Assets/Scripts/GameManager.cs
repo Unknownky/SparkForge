@@ -256,22 +256,40 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            //重新加载场景
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
 #endif //用于代码测试
-        if (Input.GetKeyDown(KeyCode.Escape))
+
+
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.Escape)) //退回主场景
         {
             ReturnToMainScene();
         }
-#if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.O))    //直接修改胜利条件
         {
             Instance.isWin = true;
         }
-        if(Input.GetKeyDown(KeyCode.P)){
+        if(Input.GetKeyDown(KeyCode.P)){    //直接加载下一关
             LoadNextScene();
         }
-
 #endif
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            //重新加载场景
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //重新初始化
+            GameManagerInit();
+        }
+
     }
+
+
 
     IEnumerator LoadSceneAfterAsync()
     {
@@ -443,13 +461,13 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("初始化Level_23");
 #endif
-        _level_23Objects = GameObject.FindGameObjectsWithTag("Box");
-        foreach (var box in _level_23Objects)
+        foreach (var box in targetObjects)
         {
             box.GetComponent<ObjectController>().getGoal = false; //全部设置为到达目的地，进入判定区域时设置为false，出去时设置为true
         }
         TextManager.Instance.StartDialogueSystem(GetDialogue("2-C").dialogue);
     }
+
     private void Level_31Init()
     {
 #if UNITY_EDITOR
@@ -558,7 +576,6 @@ public class GameManager : MonoBehaviour
         }
         //TODO:进行剧情的播放
         PlayerPrefs.SetInt("level_2", 1);
-
     }
 
     public void Level_31Win()

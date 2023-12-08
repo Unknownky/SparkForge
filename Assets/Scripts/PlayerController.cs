@@ -174,11 +174,7 @@ public class PlayerController : MonoBehaviour
         }
         if (direction != Vector3.zero)
             canMove = CanCharacterMove(direction);
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            //重新加载场景
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+
     }
 
     private void Move(Vector3 direction)
@@ -223,7 +219,8 @@ public class PlayerController : MonoBehaviour
                                     Vector3 newdirection = objectController.LevelBoxMoveDirectionFix(direction);//修正用于检测的方向
                                     if (objectController.ShadowObject.GetComponent<ObjectController>().CanObjectMove(newdirection))
                                     {
-                                        objectController.Move(direction);
+                                        if(GameManager.Instance.levelLogic != LevelLogic.Level_2)
+                                            objectController.Move(direction);
                                         return true;
                                     }else{
                                         return false;
@@ -231,7 +228,8 @@ public class PlayerController : MonoBehaviour
                                 }
                                 else
                                 {
-                                    objectController.Move(direction);
+                                    if(GameManager.Instance.levelLogic != LevelLogic.Level_2)
+                                        objectController.Move(direction);
                                 }
                             }
                             return true;
