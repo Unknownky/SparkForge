@@ -48,8 +48,15 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    /// <summary>
+    /// 用于存储对话的字典
+    /// </summary>
+    private Dictionary<string, Dialogue> dialogueDictionary;
+
     // 异步加载操作对象
     private static AsyncOperation asyncOperation;
+
+
 
     private void Awake()
     {
@@ -64,7 +71,24 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         // BackgroundTest();
 #endif
+        InitDictionary();
+    }
 
+    private void InitDictionary()
+    {
+        Instance.dialogueDictionary = new Dictionary<string, Dialogue>();
+        foreach (var dialogue in dialogueContainer?.dialogues)
+        {
+            Instance.dialogueDictionary.Add(dialogue.dialogueName, dialogue);
+            #if UNITY_EDITOR
+            Debug.Log("添加了对话" + dialogue.dialogueName);
+            #endif
+        }
+    }
+
+    private Dialogue GetDialogue(string dialogueName)
+    {
+        return Instance.dialogueDictionary[dialogueName];
     }
 
 #if UNITY_EDITOR
@@ -103,27 +127,27 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name.StartsWith("Level_0"))
         {
             //加载Level_1的输入逻辑
-            levelLogic = LevelLogic.Level_0;
+            Instance.levelLogic = LevelLogic.Level_0;
         }
         else if (SceneManager.GetActiveScene().name.StartsWith("Level_1"))
         {
             //加载Level_1的输入逻辑
-            levelLogic = LevelLogic.Level_1;
+            Instance.levelLogic = LevelLogic.Level_1;
         }
         else if (SceneManager.GetActiveScene().name.StartsWith("Level_2"))
         {
             //加载Level_2的输入逻辑
-            levelLogic = LevelLogic.Level_2;
+            Instance.levelLogic = LevelLogic.Level_2;
         }
         else if (SceneManager.GetActiveScene().name.StartsWith("Level_3"))
         {
             //加载Level_3的输入逻辑
-            levelLogic = LevelLogic.Level_3;
+            Instance.levelLogic = LevelLogic.Level_3;
         }
         else if (SceneManager.GetActiveScene().name.StartsWith("Level_4"))
         {
             //加载Level_4的输入逻辑
-            levelLogic = LevelLogic.Level_4;
+            Instance.levelLogic = LevelLogic.Level_4;
         }
     }
 
@@ -158,7 +182,7 @@ public class GameManager : MonoBehaviour
     private void Level_11Init()
     {
 
-        TextManager.Instance.StartDialogueSystem(dialogueContainer.GetDialogue("1-A").dialogue);
+        TextManager.Instance.StartDialogueSystem(GetDialogue("1-A").dialogue);
 
     }
 
@@ -339,7 +363,7 @@ public class GameManager : MonoBehaviour
             Debug.Log(targetObject.name + " " + targetObject.GetComponent<ObjectController>().getGoal);
 #endif
         }
-        isWin = temp;
+        Instance.isWin = temp;
 #if UNITY_EDITOR
         Debug.Log("当前胜利状态" + isWin);
 #endif
@@ -372,10 +396,14 @@ public class GameManager : MonoBehaviour
     #region 各个关卡胜利进行逻辑
     public void Level_11Win(string dialogueName)
     {
+#if UNITY_EDITOR
+        Debug.Log("检查胜利条件"+GameManager.Instance.isWin);
+        #endif
+
         if (GameManager.Instance.isWin)
         {
             //TODO:进行剧情的播放
-            TextManager.Instance.StartDialogueSystem(dialogueContainer.GetDialogue(dialogueName).dialogue);
+            TextManager.Instance.StartDialogueSystem(GetDialogue(dialogueName).dialogue);
 
         }
     }
@@ -385,7 +413,7 @@ public class GameManager : MonoBehaviour
         if (GameManager.Instance.isWin)
         {
             //TODO:进行剧情的播放
-            TextManager.Instance.StartDialogueSystem(dialogueContainer.GetDialogue(dialogueName).dialogue);
+            TextManager.Instance.StartDialogueSystem(GetDialogue(dialogueName).dialogue);
         }
 
     }
@@ -395,7 +423,7 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("level_1", 1);
             //TODO:进行剧情的播放
-            TextManager.Instance.StartDialogueSystem(dialogueContainer.GetDialogue(dialogueName).dialogue);
+            TextManager.Instance.StartDialogueSystem(GetDialogue(dialogueName).dialogue);
         }
     }
 
@@ -403,16 +431,19 @@ public class GameManager : MonoBehaviour
     {
         if (GameManager.Instance.isWin)
         {
-            TextManager.Instance.StartDialogueSystem(dialogueContainer.GetDialogue(dialogueName).dialogue);
+            TextManager.Instance.StartDialogueSystem(GetDialogue(dialogueName).dialogue);
 
         }
     }
 
     public void Level_22Win(string dialogueName)
     {
+        #if UNITY_EDITOR
+        Debug.Log("对话名"+dialogueName);
+        #endif
         if (GameManager.Instance.isWin)
         {
-            TextManager.Instance.StartDialogueSystem(dialogueContainer.GetDialogue(dialogueName).dialogue);
+            TextManager.Instance.StartDialogueSystem(GetDialogue(dialogueName).dialogue);
 
         }
     }
@@ -436,7 +467,7 @@ public class GameManager : MonoBehaviour
     {
         if (GameManager.Instance.isWin)
         {
-            TextManager.Instance.StartDialogueSystem(dialogueContainer.GetDialogue(dialogueName).dialogue);
+            TextManager.Instance.StartDialogueSystem(GetDialogue(dialogueName).dialogue);
 
         }
     }
@@ -445,7 +476,7 @@ public class GameManager : MonoBehaviour
     {
         if (GameManager.Instance.isWin)
         {
-            TextManager.Instance.StartDialogueSystem(dialogueContainer.GetDialogue(dialogueName).dialogue);
+            TextManager.Instance.StartDialogueSystem(GetDialogue(dialogueName).dialogue);
 
         }
     }
@@ -455,7 +486,7 @@ public class GameManager : MonoBehaviour
         if (GameManager.Instance.isWin)
         {
             PlayerPrefs.SetInt("level_3", 1);
-            TextManager.Instance.StartDialogueSystem(dialogueContainer.GetDialogue(dialogueName).dialogue);
+            TextManager.Instance.StartDialogueSystem(GetDialogue(dialogueName).dialogue);
 
         }
     }
@@ -465,7 +496,7 @@ public class GameManager : MonoBehaviour
         if (GameManager.Instance.isWin)
         {
             PlayerPrefs.SetInt("level_4", 1);
-            TextManager.Instance.StartDialogueSystem(dialogueContainer.GetDialogue(dialogueName).dialogue);
+            TextManager.Instance.StartDialogueSystem(GetDialogue(dialogueName).dialogue);
         }
     }
     #endregion

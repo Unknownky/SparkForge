@@ -43,7 +43,7 @@ public class TextManager : MonoBehaviour
     //获取人物的图片的材质来改变其alpha值
     private Material _characterImageMaterial;
 
-
+    private float _waitTime = 1.5f;//等待时间
     private void Awake()
     {
         if (Instance == null)
@@ -68,6 +68,7 @@ public class TextManager : MonoBehaviour
     /// </summary>
     public void StartDialogueSystem(string text)
     {
+        PauseGame();//暂停游戏
         AccordTextProduceResult(text);//处理文本
         ShowDialoguePanel();//显示对话框
         ShowNameAndFirstSentence();//显示第一句话，显示第一句话后即开启了TMP的文本处理系统，之后的文本将由TMP处理
@@ -80,6 +81,7 @@ public class TextManager : MonoBehaviour
     {
         StartCoroutine(HideDialoguePanel());//隐藏对话框
         result.Clear();//清空结果
+        ResumeGame();//恢复游戏
     }
 
     public void SetTextEmpty()
@@ -99,9 +101,18 @@ public class TextManager : MonoBehaviour
 
     #endregion
 
+    private void PauseGame(){
+        Time.timeScale = 0;
+    }
+
+    private void ResumeGame(){
+        Time.timeScale = 1;
+    }
+
+
     private void ShowDialogueNameAndProcessPanel()
     {
-        string name = result[0].Substring(2, result[0].IndexOf(">") - 2);
+        string name = result[0].Substring(result[0].IndexOf("<")+2, result[0].IndexOf(">") - 2);
         //显示对话人物名字
         _nameText.text = name;//显示人物名字
         //在本游戏中只需要处理主角的图片的alpha值即可

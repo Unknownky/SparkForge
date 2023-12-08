@@ -97,7 +97,7 @@ public class AdvancedText : TextMeshProUGUI
 
     private int _typingIndex = 0; //打字机索引
 
-    private float _defaultInterval = 0.05f; //默认间隔时间
+    private float _defaultInterval = 0.02f; //默认间隔时间
 
     private float _interval; //间隔时间
 
@@ -236,7 +236,7 @@ public class AdvancedText : TextMeshProUGUI
 
 
     //一个协程，用于实现渐变效果
-    IEnumerator FadeInCharacter(int index, float duration = 0.2f)
+    IEnumerator FadeInCharacter(int index, float duration = 0.1f)
     {
         if (duration <= 0)
         {
