@@ -108,6 +108,22 @@ public class AdvancedText : TextMeshProUGUI
         textPreprocessor = new AdvancedTextPreprocessor();
     }
 
+    private void Update()
+    {
+        if(TextManager.Instance.result.Count <= 2){ //只剩最后一段
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if(TextManager.Instance.result.Count == 1){ //只剩最后一段
+                return;
+            }
+            _typingIndex = m_characterCount - 1;//将索引设置为最后一个字符的索引
+            TextManager.Instance.SetTextEmpty();//清空文本
+            TextManager.Instance.ShowNameAndFirstSentence();//显示下一句话
+        }
+    }
+
     /// <summary>
     /// 按照打字机效果显示文本
     /// </summary>
@@ -142,8 +158,6 @@ public class AdvancedText : TextMeshProUGUI
 
             //在这里添加标签事件逻辑
             SequenceEventTriger(_typingIndex);//标签事件逻辑
-
-
 
             yield return new WaitForSecondsRealtime(_interval);
 
@@ -212,20 +226,25 @@ public class AdvancedText : TextMeshProUGUI
     }
 
     #region 标签事件函数
-    IEnumerator BreakInvoke(){
-        while(!Input.GetMouseButtonDown(0)){
+    IEnumerator BreakInvoke()
+    {
+        while (!Input.GetMouseButtonDown(0))
+        {
             yield return null;
         }
         TextManager.Instance.SetTextEmpty();//清空文本
         TextManager.Instance.ShowNameAndFirstSentence();//显示下一句话
     }
 
-    private void RainInvoke(){
+    private void RainInvoke()
+    {
         TextManager.Instance._background.GetComponent<SpriteRenderer>().sprite = TextManager.Instance._Rainbackground;
     }
 
-    IEnumerator FinishInvoke(){
-        while(!Input.GetMouseButtonDown(0)){
+    IEnumerator FinishInvoke()
+    {
+        while (!Input.GetMouseButtonDown(0))
+        {
             yield return null;
         }
         TextManager.Instance.SetTextEmpty();//清空文本

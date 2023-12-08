@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -108,7 +109,7 @@ public class PlayerController : MonoBehaviour
     {
         if (gameObject.tag == "Player")
         {
-            if(isUnmoveable)
+            if (isUnmoveable)
             {
                 return;
             }
@@ -142,7 +143,7 @@ public class PlayerController : MonoBehaviour
             direction = Vector3.right;
         }
         if (direction != Vector3.zero)
-            canMove = CanCharacterMove(direction);
+            canMove = CanVirtualCharacterMove(transform.position, direction);
 
 
     }
@@ -173,7 +174,7 @@ public class PlayerController : MonoBehaviour
             direction = Vector3.right;
         }
         if (direction != Vector3.zero)
-            canMove = CanCharacterMove(direction);
+            canMove = CanVirtualCharacterMove(transform.position, direction);
 
     }
 
@@ -183,14 +184,17 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// 检测玩家是否可以移动
+    /// 检测虚拟人物是否可以移动
     /// </summary>
-    private bool CanCharacterMove(Vector3 direction)
+    /// <param name="startPosition">虚拟人物的中心位置</param>
+    /// <param name="direction">移动方向</param>
+    /// <returns></returns>
+    private bool CanVirtualCharacterMove(Vector3 startPosition, Vector3 direction)
     {
-        RaycastHit2D raycastTry = Physics2D.Raycast(transform.position + direction * centerOffset, direction, raycasetDistance);
+        RaycastHit2D raycastTry = Physics2D.Raycast(startPosition + direction * centerOffset, direction, raycasetDistance);
         if (raycastTry)
         {
-            RaycastHit2D[] raycastHit2Ds = Physics2D.RaycastAll(transform.position + direction * centerOffset, direction, raycasetDistance);
+            RaycastHit2D[] raycastHit2Ds = Physics2D.RaycastAll(startPosition + direction * centerOffset, direction, raycasetDistance);
             foreach (var raycastHit2D in raycastHit2Ds)
             {
 #if UNITY_EDITOR
@@ -200,65 +204,33 @@ public class PlayerController : MonoBehaviour
 #if UNITY_EDITOR
                 Debug.Log("人物射线检测击中物体tag" + hitObjectTag);
 #endif
-                switch (hitObjectTag)
-                {
-                    case "Box":
-                        obj = raycastHit2D.collider.gameObject;
-                        objectController = obj.GetComponent<ObjectController>();
-                        if (!objectController.CanObjectMove(direction))
-                        {
+                if(GameManager.Instance.levelLogic == LevelLogic.Level_3){
+                    switch(hitObjectTag){
+                        case "Boarder":
                             return false;
-                        }
-                        else //如果当前推动的箱子可以移动
-                        {
-
-                            if (!isObject)
+                        case "Wall":
+                            if (inverseControl) //反向代码的逻辑
+                                return true;
+                            return false;
+                        case "Floor":
+                            if (inverseControl)
                             {
-                                if (objectController.haveShadowObject)
-                                {
-                                    Vector3 newdirection = objectController.LevelBoxMoveDirectionFix(direction);//修正用于检测的方向
-                                    if (objectController.ShadowObject.GetComponent<ObjectController>().CanObjectMove(newdirection))
-                                    {
-                                        if(GameManager.Instance.levelLogic != LevelLogic.Level_2)
-                                            objectController.Move(direction);
-                                        return true;
-                                    }else{
-                                        return false;
-                                    }
-                                }
-                                else
-                                {
-                                    if(GameManager.Instance.levelLogic != LevelLogic.Level_2)
-                                        objectController.Move(direction);
-                                }
+                                return false;
                             }
                             return true;
-                        }
-                    case "Wall":
-                        if (inverseControl) //反向代码的逻辑
-                            return true;
-                        return false;
-                    case "Floor":
-                        if (inverseControl)
-                        {
-                            return false;
-                        }
-                        return true;
+                            
 
-                    case "Destination":
-                        Destination();
-                        break;
-                    case "Player":
-                        return false;
-                    case "Boarder":
-                        return false;
-                    case "ShadowBox":
-                        return false;
-                    default:
-                        break;
+
+                    }
+
                 }
                 switch (hitObjectTag)
                 {
+                    case "Boarder":
+                        return false;
+                    // case "PublicArea":
+                    //     //以目标的位置的中心位置为起点，以当前的方向为方向，再次进行射线检测
+                    //     return CanVirtualCharacterMove(raycastHit2D.collider.gameObject.transform.position, raycasetDistance * direction);
                     case "Wall":
                         if (inverseControl) //反向代码的逻辑
                             return true;
@@ -300,8 +272,6 @@ public class PlayerController : MonoBehaviour
                         Destination();
                         break;
                     case "Player":
-                        return false;
-                    case "Boarder":
                         return false;
                     default:
                         break;

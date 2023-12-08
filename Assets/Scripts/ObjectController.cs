@@ -96,6 +96,9 @@ public class ObjectController : MonoBehaviour
                 {
                     return false;
                 }
+                else if(hitObjectTag == "PublicArea"){
+                    return true;
+                }
                 else if (hitObjectTag == "Floor" || hitObjectTag == "Wall") //箱子在边界上，且箱子会先打到边界(先于箱子、角色、边界)，那么在进行一次射线检测
                 {
                     RaycastHit2D newraycastHit2D = Physics2D.Raycast(transform.position + direction * reraycastCenterOffset, direction, raycasetDistance / 2);
