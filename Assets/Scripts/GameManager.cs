@@ -583,7 +583,7 @@ public class GameManager : MonoBehaviour
 
         PlayerPrefs.SetInt("level_1", 1);
         //TODO:进行剧情的播放
-        TextManager.Instance.StartDialogueSystem("<#作者>1-D剧情还未完成<finish>");
+        // TextManager.Instance.StartDialogueSystem("<#作者>1-D剧情还未完成<finish>");
         LoadScene("Level_0-1");
         // StartCoroutine(WaitUntilDialogueFinishThenLoadScene("Level_0-1"));
     

@@ -1,7 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// 该脚本用于控制时间轴的播放
@@ -18,13 +18,8 @@ public class Director : MonoBehaviour
 
     private void Update()
     {
-        if (director.state == PlayState.Paused)
-        {
-            director.Resume();
-#if UNITY_EDITOR
-            Debug.Log("Paused");
-#endif
-        }
+        StartCoroutine(LoadMainScene());
+        
         if (director.state == PlayState.Playing)
         {
             if(Input.GetKeyDown(KeyCode.RightArrow))
@@ -47,6 +42,12 @@ public class Director : MonoBehaviour
                 director.playableGraph.GetRootPlayable(0).SetSpeed(1);
             }
         }
+
+    }
+
+    private IEnumerator LoadMainScene(){
+        yield return new WaitForSeconds(16f);
+        SceneManager.LoadScene("Level_0-1");
 
     }
 }
