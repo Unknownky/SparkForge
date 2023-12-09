@@ -240,7 +240,7 @@ public class GameManager : MonoBehaviour
         else if (PlayerPrefs.GetInt("GameStatus") == 1)
         {
             mainSceneBackground.GetComponent<SpriteRenderer>().sprite = mainSceneNightBackground;
-            barrier.SetActive(true);
+            barrier.SetActive(false);
 
         }
     }
@@ -281,6 +281,15 @@ public class GameManager : MonoBehaviour
             Instance.isResetCondition = true;
             //重新加载场景，使用GameManager的方法
             LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if(Input.GetKeyDown(KeyCode.C)){
+            PlayerPrefs.SetInt("GameStatus", 1);
+#if UNITY_EDITOR
+            Debug.Log(PlayerPrefs.GetInt("GameStatus"));
+            mainSceneBackground.GetComponent<SpriteRenderer>().sprite = mainSceneNightBackground;
+            barrier.SetActive(false);
+            #endif
         }
 
 #endif //用于代码测试
@@ -604,9 +613,10 @@ public class GameManager : MonoBehaviour
             }
         }
         //TODO:进行剧情的播放
-        TextManager.Instance.StartDialogueSystem(GetDialogue("2-D").dialogue);
-        StartCoroutine(WaitUntilDialogueFinishThenLoadScene("Level_0-1"));
+        // TextManager.Instance.StartDialogueSystem(GetDialogue("2-D").dialogue);
+        // StartCoroutine(WaitUntilDialogueFinishThenLoadScene("Level_0-1"));
         PlayerPrefs.SetInt("level_2", 1);
+        LoadScene("Level_0-1");
     }
 
     public void Level_31Win()
@@ -643,8 +653,8 @@ public class GameManager : MonoBehaviour
         if (GameManager.Instance.isWin)
         {
             PlayerPrefs.SetInt("level_4", 1);
-            TextManager.Instance.StartDialogueSystem("<#作者>剧情4-B还未完成<finish>");
-            StartCoroutine(WaitUntilDialogueFinishThenLoadScene("Level_0-1"));
+            // TextManager.Instance.StartDialogueSystem("<#作者>剧情4-B还未完成<finish>");
+            LoadScene("Level-0-1");
         }
     }
     #endregion

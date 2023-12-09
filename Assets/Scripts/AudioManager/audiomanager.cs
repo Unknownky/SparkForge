@@ -5,18 +5,35 @@ using System;
 
 public class audiomanager : MonoBehaviour
 {
-    public static audiomanager Instance;
+    private static audiomanager instance;
 
-    public Audiosmassages[] musicSounds, sfxSounds;
-    public AudioSource musicSource, sfxSource;
+    public AudioClip[] audioClips;
 
-    public AudioClip audioClip;
+    public static audiomanager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<audiomanager>();
+                if (instance == null)
+                {
+                    GameObject obj = new GameObject();
+                    obj.name = "audiomanager";
+                    instance = obj.AddComponent<audiomanager>();
+                }
+            }
+            return instance;
+        }
+    }
+    private AudioSource audioSource;
 
     private void Awake()
     {
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance =  this;
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -24,45 +41,46 @@ public class audiomanager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        #if UNITY_EDITOR
-        Debug.Log("Unity Editor");
-        #endif
-        PlayMusic("csyx");//背景音乐，csyx就是测试音效，换了就行
-    }
+        audioSource = GetComponent<AudioSource>();
+        audioSource.volume = PlayerPrefs.GetFloat("volume", 1);
+        // Get the current scene name
+        string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
-
-    public void PlayMusic(string name)
-    {
-        Audiosmassages s = Array.Find(musicSounds,x => x.name == name);
-
-        if (s == null)
+        // Play corresponding music based on the scene name
+        switch (sceneName)
         {
-            Debug.Log("Sound Not Found");
-        }
-
-
-        else
-        {
-            musicSource.clip = s.clip;
-            musicSource.Play();
-        }
-    }
-
-
-    public void PlaySFX(string name)
-    {
-        Audiosmassages s = Array.Find(sfxSounds, x => x.name == name);
-
-        if (s == null)
-        {
-            Debug.Log("Sound Not Found");
-        }
-
-        else
-        {
-            sfxSource.PlayOneShot(s.clip);
+            case "Level_0-1":
+                PlaySound(audioClips[0]);
+                break;
+            case "Level_1-1":
+                PlaySound(audioClips[1]);
+                break;
+            case "Level_4-1":
+                PlaySound(audioClips[2]);
+                break;
+            default:
+                // Play default music or handle the case when the scene name doesn't match any specific music
+                break;
         }
     }
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
+    }
+
+    /// <summary>
+    /// 该方法播放推箱子的声音
+    /// </summary>
+    public void PlayPushBoxSound()
+    {
+        audioSource.PlayOneShot(audioClips[3]);
+    }   
+
+    public void StopSound()
+    {
+        audioSource.Stop();
+    }
+
 }
