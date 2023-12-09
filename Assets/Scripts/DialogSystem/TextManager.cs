@@ -27,12 +27,6 @@ public class TextManager : MonoBehaviour
     /// </summary>
     public List<string> result { get; private set; }
 
-#if UNITY_EDITOR
-    [SerializeField] public GameObject _background;//背景图片
-    [SerializeField] public Sprite _Sunbackground;//背景图片
-    [SerializeField] public Sprite _Rainbackground;//背景图片
-
-#endif
 
     private Animator _dialoguePanelAnimator;//对话框的动画控制器
 

@@ -57,6 +57,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (isUnmoveable)
+            return;
         switch (levelLogic)
         {
             case LevelLogic.Level_0:
@@ -228,6 +230,10 @@ public class PlayerController : MonoBehaviour
                         return false;
 
                     case "Box":
+                        if(levelLogic == LevelLogic.Level_2)
+                        {
+                            return false;
+                        }
                         obj = raycastHit2D.collider.gameObject;
                         objectController = obj.GetComponent<ObjectController>();
                         if (!objectController.CanObjectMove(direction))

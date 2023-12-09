@@ -84,17 +84,17 @@ public class GameManager : MonoBehaviour
             AudioListener.volume = PlayerPrefs.GetFloat("volume", 1f);//设置音量
     }
 
-    private void InitDictionary()
+private void InitDictionary()
+{
+    Instance.dialogueDictionary = new Dictionary<string, Dialogue>();
+    foreach (var dialogue in dialogueContainer?.dialogues)
     {
-        Instance.dialogueDictionary = new Dictionary<string, Dialogue>();
-        foreach (var dialogue in dialogueContainer?.dialogues)
+        if (!Instance.dialogueDictionary.TryAdd(dialogue.dialogueName, dialogue))
         {
-            Instance.dialogueDictionary.Add(dialogue.dialogueName, dialogue);
-#if UNITY_EDITOR
-            Debug.Log("添加了对话" + dialogue.dialogueName);
-#endif
+            Debug.Log($"对话 {dialogue.dialogueName} 已存在");
         }
     }
+}
 
     private Dialogue GetDialogue(string dialogueName)
     {
@@ -159,6 +159,8 @@ public class GameManager : MonoBehaviour
         {
             //加载Level_2的输入逻辑
             Instance.levelLogic = LevelLogic.Level_2;
+            StartCoroutine(new WaitForSecondsRealtime(2f));
+
         }
         else if (SceneManager.GetActiveScene().name.StartsWith("Level_3"))
         {
@@ -247,35 +249,6 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
 #if UNITY_EDITOR
-        if (Input.GetMouseButtonDown(0))
-        {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.collider.CompareTag("Dialogue1"))
-                {
-#if UNITY_EDITOR
-                    Debug.Log("点击了对话物体");
-#endif
-                    TextManager.Instance.StartDialogueSystem("<#同事一>（把一踏文件扔在桌上）今天你把这沓文件做完，明天早上交到我办公桌上。<break><#我>啊……好的<break><#我>（今天又要加班了）<finish>");
-                }
-                if (hit.collider.CompareTag("Dialogue2"))
-                {
-#if UNITY_EDITOR
-                    Debug.Log("点击了对话物体");
-#endif
-                    TextManager.Instance.StartDialogueSystem("<#同事二>上次交给你的项目做完了吗？<break><#我>还差一点没有完成。<break><#同事二>一个小项目这么久还没做完(不耐烦)，赶快把文件交给我<break><#我>……好<break>");
-                }
-                if (hit.collider.CompareTag("Dialogue3"))
-                {
-#if UNITY_EDITOR
-                    Debug.Log("点击了对话物体");
-#endif
-                    TextManager.Instance.StartDialogueSystem("<#我>(看到桌子上的文件)这个不是我做的项目吗，怎么负责人是她的名字……");
-                }
-            }
-        }
         if (Input.GetKeyDown(KeyCode.R))
         {
             Instance.isResetCondition = true;
@@ -285,14 +258,14 @@ public class GameManager : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.C)){
             PlayerPrefs.SetInt("GameStatus", 1);
-#if UNITY_EDITOR
+
             Debug.Log(PlayerPrefs.GetInt("GameStatus"));
             mainSceneBackground.GetComponent<SpriteRenderer>().sprite = mainSceneNightBackground;
             barrier.SetActive(false);
-            #endif
         }
 
-#endif //用于代码测试
+#endif
+//用于代码测试
 
 
 
@@ -340,8 +313,8 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("退出游戏");
 #endif
-
-        // Application.Quit();
+        Application.Quit();
+        
     }
 
 
@@ -385,9 +358,7 @@ public class GameManager : MonoBehaviour
     {
         Instance.targetObjects = GameObject.FindGameObjectsWithTag("Box");
 
-#if UNITY_EDITOR
-        Debug.Log("检查胜利条件");
-#endif
+
         bool temp = true;
         foreach (var targetObject in Instance.targetObjects)
         {
@@ -562,7 +533,7 @@ public class GameManager : MonoBehaviour
 
     public void Level_12Win()
     {
-        if (GameManager.Instance.isWin)
+        if (isWin)
         {
             //TODO:进行剧情的播放
             LoadScene("Level_1-3");
@@ -586,7 +557,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("在Levelwin中检查Instance的胜利条件" + GameManager.Instance.isWin);
         Debug.Log("检查胜利条件" + isWin);
         #endif
-        if (GameManager.Instance.isWin)
+        if (Instance.isWin)
         {
             LoadScene("Level_2-2");
         }
@@ -595,10 +566,12 @@ public class GameManager : MonoBehaviour
     public void Level_22Win()
     {
         #if UNITY_EDITOR
-        Debug.Log("检查Instance的胜利条件" + GameManager.Instance.isWin);
+        Debug.Log("Level_22" + Instance.isWin);
         #endif
-        if (GameManager.Instance.isWin)
+        if (Instance.isWin)
         {
+            PlayerPrefs.SetInt("level_2", 1);
+            Instance.isWin = false;
             LoadScene("Level_2-3");
         }
     }

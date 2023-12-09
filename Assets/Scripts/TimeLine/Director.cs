@@ -41,6 +41,10 @@ public class Director : MonoBehaviour
             {
                 director.playableGraph.GetRootPlayable(0).SetSpeed(1);
             }
+            if(Input.GetKeyDown(KeyCode.Escape)) //跳过剧情
+            {
+                SceneManager.LoadScene("Level_0-1");
+            }
         }
 
     }
