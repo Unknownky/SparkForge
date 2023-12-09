@@ -65,20 +65,23 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private bool isResetCondition;
 
+
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(this);
-        Instance.isWin = false;
-        mainCamera = Camera.main;
-        mainCamera.orthographicSize = 9f;
-        mainSceneBackground = GameObject.Find("MainSceneBackground");
-#if UNITY_EDITOR
-        // BackgroundTest();
-#endif
-        InitDictionary();
+            if (Instance == null)
+                Instance = this;
+            else
+                Destroy(this);
+            Instance.isWin = false;
+            mainCamera = Camera.main;
+            mainCamera.orthographicSize = 9f;
+            mainSceneBackground = GameObject.Find("MainSceneBackground");
+        #if UNITY_EDITOR
+            // BackgroundTest();
+        #endif
+            InitDictionary();
+            //设置音量
+            AudioListener.volume = PlayerPrefs.GetFloat("volume", 1f);//设置音量
     }
 
     private void InitDictionary()

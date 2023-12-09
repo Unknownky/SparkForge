@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
-        
+    public Slider volumeSlider;
     public void StartGame()
     {
         SceneManager.LoadScene("Cg01Test");
@@ -15,4 +14,11 @@ public class MenuController : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void OnSliderValueChanged()
+    {
+        PlayerPrefs.SetFloat("volume", volumeSlider.value);
+    }
+
+
 }
