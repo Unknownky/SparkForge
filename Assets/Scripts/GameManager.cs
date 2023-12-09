@@ -311,14 +311,12 @@ public class GameManager : MonoBehaviour
     }
 
     public void LoadNextScene(){
-        asyncOperation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex+1);
-        StartCoroutine(LoadSceneAfterAs());
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 
     public void LoadScene(string sceneName)
     {
-        asyncOperation = SceneManager.LoadSceneAsync(sceneName);
-        StartCoroutine(LoadSceneAfterAs());
+        SceneManager.LoadScene(sceneName);
     }
 
     public static void QuitGame()
@@ -532,12 +530,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public GameObject shadowPlayer;
 
     private void Level_4XInit()
     {
 #if UNITY_EDITOR
         Debug.Log("初始化Level_41"+"播放剧情4-A");
 #endif
+
+        shadowPlayer.GetComponent<PlayerController>().isUnmoveable = true;
         foreach (var box in Instance.targetObjects)
         {
             box.GetComponent<ObjectController>().getGoal = false; //全部设置为到达目的地，进入判定区域时设置为false，出去时设置为true
