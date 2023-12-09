@@ -50,7 +50,8 @@ public class PlayerController : MonoBehaviour
         //判断当前的关卡，如果为Level_1开头的场景，则加载Level_1的输入逻辑
         //根据关卡加载对应的输入逻辑
         levelLogic = GameManager.Instance.levelLogic;//设置当前关卡的逻辑
-        animator = GetComponent<Animator>();
+        if(!isObject)
+            animator = GetComponent<Animator>();
     }
 
 
@@ -271,8 +272,8 @@ public class PlayerController : MonoBehaviour
         //更新玩家和箱子的位置
         if (canMove)
         {
-            animator.SetFloat("horizontal",direction.x);
-            animator.SetFloat("vertical",direction.y);
+            animator?.SetFloat("horizontal",direction.x);
+            animator?.SetFloat("vertical",direction.y);
             Move(direction);
             canMove = false;
         }

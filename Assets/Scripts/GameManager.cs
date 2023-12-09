@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private DialogueContainer dialogueContainer;
+
+    public GameObject barrier;
     private Camera mainCamera;
 
     private GameObject mainSceneBackground;
@@ -230,11 +232,13 @@ public class GameManager : MonoBehaviour
 
         if (PlayerPrefs.GetInt("GameStatus") == 0)
         {
-            // mainSceneBackground.GetComponent<SpriteRenderer>().sprite = mainSceneLightBackground;
+            mainSceneBackground.GetComponent<SpriteRenderer>().sprite = mainSceneLightBackground;
         }
         else if (PlayerPrefs.GetInt("GameStatus") == 1)
         {
-            // mainSceneBackground.GetComponent<SpriteRenderer>().sprite = mainSceneNightBackground;
+            mainSceneBackground.GetComponent<SpriteRenderer>().sprite = mainSceneNightBackground;
+            barrier.SetActive(true);
+
         }
     }
     private void Update()
@@ -422,11 +426,9 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("初始化Level_11");
 #endif
-        if(!Instance.isResetCondition)
-            TextManager.Instance.StartDialogueSystem(GetDialogue("1-A").dialogue);
-        else{
-            Instance.isResetCondition = false;
-        }
+        
+        TextManager.Instance.StartDialogueSystem(GetDialogue("1-A").dialogue);
+
     }
 
     private void Level_12Init()
@@ -434,11 +436,9 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("初始化Level_12");
 #endif
-        if(!Instance.isResetCondition)
-            TextManager.Instance.StartDialogueSystem(GetDialogue("1-B").dialogue);
-        else{
-            Instance.isResetCondition = false;
-        }
+        
+        TextManager.Instance.StartDialogueSystem(GetDialogue("1-B").dialogue);
+
     }
 
     private void Level_13Init()
@@ -446,11 +446,9 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("初始化Level_13");
 #endif
-        if(!Instance.isResetCondition)
-            TextManager.Instance.StartDialogueSystem(GetDialogue("1-C").dialogue);
-        else{
-            Instance.isResetCondition = false;
-        }
+        
+        TextManager.Instance.StartDialogueSystem(GetDialogue("1-C").dialogue);
+
     }
 
     private void Level_21Init()
@@ -458,11 +456,8 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("初始化Level_21");
 #endif
-        if(!Instance.isResetCondition)
-            TextManager.Instance.StartDialogueSystem(GetDialogue("2-A").dialogue);
-        else{
-            Instance.isResetCondition = false;
-        }
+        TextManager.Instance.StartDialogueSystem(GetDialogue("2-A").dialogue);
+
     }
 
     private void Level_22Init()
@@ -470,11 +465,9 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("初始化Level_22");
 #endif
-        if(!Instance.isResetCondition)
-            TextManager.Instance.StartDialogueSystem(GetDialogue("2-B").dialogue);
-        else{
-            Instance.isResetCondition = false;
-        }
+ 
+        TextManager.Instance.StartDialogueSystem(GetDialogue("2-B").dialogue);
+
     }
 
     private void Level_23Init()
@@ -486,11 +479,8 @@ public class GameManager : MonoBehaviour
         {
             box.GetComponent<ObjectController>().getGoal = false; //全部设置为到达目的地，进入判定区域时设置为false，出去时设置为true
         }
-        if(!Instance.isResetCondition)
-            TextManager.Instance.StartDialogueSystem(GetDialogue("2-C").dialogue);
-        else{
-            Instance.isResetCondition = false;
-        }
+        TextManager.Instance.StartDialogueSystem(GetDialogue("2-C").dialogue);
+
     }
 
     private void Level_31Init()
@@ -499,11 +489,9 @@ public class GameManager : MonoBehaviour
         Debug.Log("初始化Level_31");
 #endif
         // TextManager.Instance.StartDialogueSystem(GetDialogue("3-A").dialogue);
-        if(!Instance.isResetCondition)
-            TextManager.Instance.StartDialogueSystem(GetDialogue("2-C").dialogue);
-        else{
-            Instance.isResetCondition = false;
-        }
+
+        TextManager.Instance.StartDialogueSystem(GetDialogue("2-C").dialogue);
+
     }
 
     private void Level_32Init()
@@ -511,11 +499,8 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("初始化Level_32");
 #endif
-        if(!Instance.isResetCondition)
-            TextManager.Instance.StartDialogueSystem(GetDialogue("3-B").dialogue);
-        else{
-            Instance.isResetCondition = false;
-        }
+        TextManager.Instance.StartDialogueSystem(GetDialogue("3-B").dialogue);
+
     }
 
     private void Level_33Init()
@@ -523,11 +508,8 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("初始化Level_33");
 #endif
-        if(!Instance.isResetCondition)
-            TextManager.Instance.StartDialogueSystem("<#作者>剧情3-C还未完成<finish>");
-        else{
-            Instance.isResetCondition = false;
-        }
+        TextManager.Instance.StartDialogueSystem("<#作者>剧情3-C还未完成<finish>");
+
     }
 
     public GameObject shadowPlayer;
@@ -543,11 +525,8 @@ public class GameManager : MonoBehaviour
         {
             box.GetComponent<ObjectController>().getGoal = false; //全部设置为到达目的地，进入判定区域时设置为false，出去时设置为true
         }
-        if(!Instance.isResetCondition)
             TextManager.Instance.StartDialogueSystem("<#作者>剧情4-A还未完成<finish>");
-        else{
-            Instance.isResetCondition = false;
-        }
+
     }
 
 
@@ -634,7 +613,8 @@ public class GameManager : MonoBehaviour
             #if UNITY_EDITOR
             Debug.Log("level31检查胜利条件" + isWin);
             #endif
-            LoadScene("Level_3-2");
+            PlayerPrefs.SetInt("level_3", 1);
+            LoadScene("Level_0-1");
         }
     }
 
