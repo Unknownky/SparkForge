@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 游戏通过这个变量来判断是否胜利
     /// </summary>
-    [Tooltip("是否达成通关条件")] public bool isWin = false;
+    [Tooltip("是否达成通关条件")]public bool isWin = false;
 
     /// <summary>
     /// 当前关卡的逻辑
@@ -50,6 +50,10 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    /// <summary>
+    /// 用于存储对话的字典
+    /// </summary>
+    private Dictionary<string, Dialogue> dialogueDictionary;
 
     // 异步加载操作对象
     private static AsyncOperation asyncOperation;
@@ -64,19 +68,43 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(this);
-        Instance.isWin = false;
-        mainCamera = Camera.main;
-        mainCamera.orthographicSize = 9f;
-        mainSceneBackground = GameObject.Find("MainSceneBackground");
+            if (Instance == null)
+                Instance = this;
+            else
+                Destroy(this);
+            Instance.isWin = false;
+            mainCamera = Camera.main;
+            mainCamera.orthographicSize = 9f;
+            mainSceneBackground = GameObject.Find("MainSceneBackground");
+        #if UNITY_EDITOR
+            // BackgroundTest();
+        #endif
+            InitDictionary();
+            //设置音量
+            AudioListener.volume = PlayerPrefs.GetFloat("volume", 1f);//设置音量
+    }
+
+    private void InitDictionary()
+    {
+        Instance.dialogueDictionary = new Dictionary<string, Dialogue>();
+        foreach (var dialogue in dialogueContainer?.dialogues)
+        {
+            Instance.dialogueDictionary.Add(dialogue.dialogueName, dialogue);
 #if UNITY_EDITOR
-        // BackgroundTest();
+            Debug.Log("添加了对话" + dialogue.dialogueName);
 #endif
-        //设置音量
-        AudioListener.volume = PlayerPrefs.GetFloat("volume", 1f);//设置音量
+        }
+    }
+
+    private Dialogue GetDialogue(string dialogueName)
+    {
+        return Instance.dialogueDictionary[dialogueName];
+    }
+
+#if UNITY_EDITOR
+
+    private void Start()
+    {
 #if UNITY_EDITOR
         Debug.Log("当前关卡" + SceneManager.GetActiveScene().name);
 #endif
@@ -87,20 +115,7 @@ public class GameManager : MonoBehaviour
         LoadCurrentLevelLogic(levelLogic);
     }
 
-
-    private Dialogue GetDialogue(string dialogueName)
-    {
-        return dialogueContainer.dialogues.Find(dialogue => dialogue.dialogueName == dialogueName);
-    }
-
-#if UNITY_EDITOR
-
-    private void Start()
-    {
-
-    }
-
-
+    
     IEnumerator LoadSceneAfterAs()
     {
         yield return new WaitForSecondsRealtime(2f);
@@ -154,9 +169,6 @@ public class GameManager : MonoBehaviour
         {
             //加载Level_4的输入逻辑
             Instance.levelLogic = LevelLogic.Level_4;
-#if UNITY_EDITOR
-            Debug.Log("加载Level_4的输入逻辑");
-#endif
         }
     }
 
@@ -271,14 +283,13 @@ public class GameManager : MonoBehaviour
             LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        if (Input.GetKeyDown(KeyCode.C))
-        {
+        if(Input.GetKeyDown(KeyCode.C)){
             PlayerPrefs.SetInt("GameStatus", 1);
 #if UNITY_EDITOR
             Debug.Log(PlayerPrefs.GetInt("GameStatus"));
             mainSceneBackground.GetComponent<SpriteRenderer>().sprite = mainSceneNightBackground;
             barrier.SetActive(false);
-#endif
+            #endif
         }
 
 #endif //用于代码测试
@@ -293,8 +304,7 @@ public class GameManager : MonoBehaviour
         {
             Instance.isWin = true;
         }
-        if (Input.GetKeyDown(KeyCode.P))
-        {    //直接加载下一关
+        if(Input.GetKeyDown(KeyCode.P)){    //直接加载下一关
             LoadNextScene();
         }
 
@@ -316,9 +326,8 @@ public class GameManager : MonoBehaviour
         LoadScene("Level_0-1");
     }
 
-    public void LoadNextScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    public void LoadNextScene(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 
     public void LoadScene(string sceneName)
@@ -405,7 +414,16 @@ public class GameManager : MonoBehaviour
     }
 
     #region 用于第四关的逻辑控制
-
+    public void ChangeControl()
+    {
+        PlayerController playerController = GameObject.Find("player").GetComponent<PlayerController>();
+        PlayerController shadowPlayerController = GameObject.Find("shadowplayer").GetComponent<PlayerController>();
+        playerController.isUnmoveable = !playerController.isUnmoveable;//更改玩家的可移动状态
+        shadowPlayerController.isUnmoveable = !shadowPlayerController.isUnmoveable;//更改影子的可移动状态
+#if UNITY_EDITOR
+        Debug.Log("反转控制");
+#endif
+    }
     #endregion
 
 
@@ -420,7 +438,7 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("初始化Level_11");
 #endif
-
+        
         TextManager.Instance.StartDialogueSystem(GetDialogue("1-A").dialogue);
 
     }
@@ -430,7 +448,7 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("初始化Level_12");
 #endif
-
+        
         TextManager.Instance.StartDialogueSystem(GetDialogue("1-B").dialogue);
 
     }
@@ -440,7 +458,7 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("初始化Level_13");
 #endif
-
+        
         TextManager.Instance.StartDialogueSystem(GetDialogue("1-C").dialogue);
 
     }
@@ -459,7 +477,7 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("初始化Level_22");
 #endif
-
+ 
         TextManager.Instance.StartDialogueSystem(GetDialogue("2-B").dialogue);
 
     }
@@ -506,17 +524,20 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public GameObject shadowPlayer;
 
     private void Level_4XInit()
     {
 #if UNITY_EDITOR
-        Debug.Log("初始化Level_41" + "播放剧情4-A");
+        Debug.Log("初始化Level_41"+"播放剧情4-A");
 #endif
+
+        shadowPlayer.GetComponent<PlayerController>().isUnmoveable = true;
         foreach (var box in Instance.targetObjects)
         {
             box.GetComponent<ObjectController>().getGoal = false; //全部设置为到达目的地，进入判定区域时设置为false，出去时设置为true
         }
-        TextManager.Instance.StartDialogueSystem("<#作者>剧情4-A还未完成<finish>");
+            TextManager.Instance.StartDialogueSystem("<#作者>剧情4-A还未完成<finish>");
 
     }
 
@@ -556,15 +577,15 @@ public class GameManager : MonoBehaviour
         // TextManager.Instance.StartDialogueSystem("<#作者>1-D剧情还未完成<finish>");
         LoadScene("Level_0-1");
         // StartCoroutine(WaitUntilDialogueFinishThenLoadScene("Level_0-1"));
-
+    
     }
 
     public void Level_21Win()
     {
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         Debug.Log("在Levelwin中检查Instance的胜利条件" + GameManager.Instance.isWin);
         Debug.Log("检查胜利条件" + isWin);
-#endif
+        #endif
         if (GameManager.Instance.isWin)
         {
             LoadScene("Level_2-2");
@@ -573,9 +594,9 @@ public class GameManager : MonoBehaviour
 
     public void Level_22Win()
     {
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         Debug.Log("检查Instance的胜利条件" + GameManager.Instance.isWin);
-#endif
+        #endif
         if (GameManager.Instance.isWin)
         {
             LoadScene("Level_2-3");
@@ -602,9 +623,9 @@ public class GameManager : MonoBehaviour
     {
         if (GameManager.Instance.isWin)
         {
-#if UNITY_EDITOR
+            #if UNITY_EDITOR
             Debug.Log("level31检查胜利条件" + isWin);
-#endif
+            #endif
             PlayerPrefs.SetInt("level_3", 1);
             LoadScene("Level_0-1");
         }
@@ -644,7 +665,7 @@ public class GameManager : MonoBehaviour
     /// <returns></returns>
     private IEnumerator WaitUntilDialogueFinishThenLoadScene(string sceneName)
     {
-        while (dialoguePanel.activeSelf)
+        while(dialoguePanel.activeSelf)
         {
             yield return new WaitForSecondsRealtime(0.2f);
         }

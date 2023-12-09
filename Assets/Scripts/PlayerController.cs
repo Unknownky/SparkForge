@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// 该脚本控制推箱子游戏中的玩家
@@ -47,9 +49,6 @@ public class PlayerController : MonoBehaviour
     {
         //判断当前的关卡，如果为Level_1开头的场景，则加载Level_1的输入逻辑
         //根据关卡加载对应的输入逻辑
-        #if UNITY_EDITOR
-        Debug.Log(GameManager.Instance.levelLogic);
-        #endif
         levelLogic = GameManager.Instance.levelLogic;//设置当前关卡的逻辑
         if(!isObject)
             animator = GetComponent<Animator>();
@@ -267,7 +266,6 @@ public class PlayerController : MonoBehaviour
         }
         return true;
     }
-
 
     private void FixedUpdate()
     {
