@@ -76,13 +76,9 @@ public class AdvancedTextPreprocessor : ITextPreprocessor
         processingText = text;
         // pattern = @"<(\d+)(\.\d+)?>"; //匹配标签的正则表达式  .表示任意字符 *表示0个或多个 ?表示非贪婪模式(即尽可能少的匹配)
         pattern = @"<.*?>";
-#if UNITY_EDITOR
+
         processingText = Regex.Replace(processingText, pattern, "");//利用正则表达式移除匹配到的标签
-#else
-        {
-            processingText = Regex.Replace(processingText, pattern, "");//利用正则表达式移除匹配到的标签
-        }
-#endif
+
         return processingText;//返回处理后的文本，作为当前脚本的文本
     }
 }

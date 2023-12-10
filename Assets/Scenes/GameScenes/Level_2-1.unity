@@ -2112,6 +2112,11 @@ PrefabInstance:
       propertyPath: getGoal
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8146310717251455399, guid: 41b1a8b80dc758746ae2e2c6a2707252,
+        type: 3}
+      propertyPath: raycasetDistance
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 9103646087108216573, guid: 41b1a8b80dc758746ae2e2c6a2707252,
         type: 3}
       propertyPath: isObject
@@ -2198,6 +2203,11 @@ PrefabInstance:
         type: 3}
       propertyPath: getGoal
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146310717251455399, guid: 41b1a8b80dc758746ae2e2c6a2707252,
+        type: 3}
+      propertyPath: raycasetDistance
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 9103646087108216573, guid: 41b1a8b80dc758746ae2e2c6a2707252,
         type: 3}
@@ -3694,6 +3704,11 @@ PrefabInstance:
       propertyPath: getGoal
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8146310717251455399, guid: 41b1a8b80dc758746ae2e2c6a2707252,
+        type: 3}
+      propertyPath: raycasetDistance
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 9103646087108216573, guid: 41b1a8b80dc758746ae2e2c6a2707252,
         type: 3}
       propertyPath: isObject
@@ -3864,6 +3879,11 @@ PrefabInstance:
         type: 3}
       propertyPath: getGoal
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146310717251455399, guid: 41b1a8b80dc758746ae2e2c6a2707252,
+        type: 3}
+      propertyPath: raycasetDistance
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

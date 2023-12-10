@@ -230,10 +230,6 @@ public class PlayerController : MonoBehaviour
                         return false;
 
                     case "Box":
-                        if(levelLogic == LevelLogic.Level_2)
-                        {
-                            return false;
-                        }
                         obj = raycastHit2D.collider.gameObject;
                         objectController = obj.GetComponent<ObjectController>();
                         if (!objectController.CanObjectMove(direction))
@@ -278,8 +274,10 @@ public class PlayerController : MonoBehaviour
         //更新玩家和箱子的位置
         if (canMove)
         {
-            animator?.SetFloat("horizontal",direction.x);
-            animator?.SetFloat("vertical",direction.y);
+            if(!isObject){
+                animator?.SetFloat("horizontal",direction.x);
+                animator?.SetFloat("vertical",direction.y);
+            }
             Move(direction);
             canMove = false;
         }

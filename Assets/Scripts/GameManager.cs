@@ -101,7 +101,7 @@ private void InitDictionary()
         return Instance.dialogueDictionary[dialogueName];
     }
 
-#if UNITY_EDITOR
+
 
     private void Start()
     {
@@ -219,7 +219,7 @@ private void InitDictionary()
     {
         PlayerPrefs.SetInt("GameStatus", 1);
     }
-#endif
+
 
     /// <summary>
     /// 根据游戏状态设置主场景的背景，0为白天，1为夜晚，使用PlayerPrefs来存储
@@ -271,6 +271,8 @@ private void InitDictionary()
 
         if (Input.GetKeyDown(KeyCode.Escape)) //退回主场景
         {
+            Time.timeScale = 1;
+
             ReturnToMainScene();
         }
         if (Input.GetKeyDown(KeyCode.O))    //直接修改胜利条件
@@ -300,7 +302,11 @@ private void InitDictionary()
     }
 
     public void LoadNextScene(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        GameManager.Instance.GameManagerInit(false);
+        if(levelLogic != LevelLogic.Level_4)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        else
+            SceneManager.LoadScene("Level_0-1");
     }
 
     public void LoadScene(string sceneName)
@@ -318,7 +324,7 @@ private void InitDictionary()
     }
 
 
-    public static void StartDialogue(string dialogue)
+    public void StartDialogue(string dialogue)
     {
         TextManager.Instance.StartDialogueSystem(dialogue);
     }
@@ -326,7 +332,7 @@ private void InitDictionary()
     /// <summary>
     /// 打开设置
     /// </summary>
-    public static void EnableSetting()
+    public void EnableSetting()
     {
         Debug.Log("打开设置");
 
@@ -335,12 +341,12 @@ private void InitDictionary()
     /// <summary>
     /// 达成胜利条件
     /// </summary>
-    public static void SetWin()
+    public void SetWin()
     {
         Instance.isWin = true;
     }
 
-    public static void ResetWin()
+    public void ResetWin()
     {
         Instance.isWin = false;
     }
@@ -471,9 +477,8 @@ private void InitDictionary()
 #if UNITY_EDITOR
         Debug.Log("初始化Level_31");
 #endif
-        // TextManager.Instance.StartDialogueSystem(GetDialogue("3-A").dialogue);
+        TextManager.Instance.StartDialogueSystem(GetDialogue("3-A").dialogue);
 
-        TextManager.Instance.StartDialogueSystem(GetDialogue("2-C").dialogue);
 
     }
 
@@ -502,13 +507,12 @@ private void InitDictionary()
 #if UNITY_EDITOR
         Debug.Log("初始化Level_41"+"播放剧情4-A");
 #endif
-
         shadowPlayer.GetComponent<PlayerController>().isUnmoveable = true;
         foreach (var box in Instance.targetObjects)
         {
             box.GetComponent<ObjectController>().getGoal = false; //全部设置为到达目的地，进入判定区域时设置为false，出去时设置为true
         }
-            TextManager.Instance.StartDialogueSystem("<#作者>剧情4-A还未完成<finish>");
+        TextManager.Instance.StartDialogueSystem(GetDialogue("4-A").dialogue);
 
     }
 
@@ -586,10 +590,9 @@ private void InitDictionary()
             }
         }
         //TODO:进行剧情的播放
-        // TextManager.Instance.StartDialogueSystem(GetDialogue("2-D").dialogue);
-        // StartCoroutine(WaitUntilDialogueFinishThenLoadScene("Level_0-1"));
+        TextManager.Instance.StartDialogueSystem(GetDialogue("2-D").dialogue);
+        StartCoroutine(WaitUntilDialogueFinishThenLoadScene("Level_0-1"));
         PlayerPrefs.SetInt("level_2", 1);
-        LoadScene("Level_0-1");
     }
 
     public void Level_31Win()
@@ -600,7 +603,9 @@ private void InitDictionary()
             Debug.Log("level31检查胜利条件" + isWin);
             #endif
             PlayerPrefs.SetInt("level_3", 1);
-            LoadScene("Level_0-1");
+            TextManager.Instance.StartDialogueSystem(GetDialogue("3-B").dialogue);
+            StartCoroutine(WaitUntilDialogueFinishThenLoadScene("Level_0-1"));
+
         }
     }
 
@@ -617,6 +622,7 @@ private void InitDictionary()
         if (GameManager.Instance.isWin)
         {
             PlayerPrefs.SetInt("level_3", 1);
+            // TextManager.Instance.StartDialogueSystem(GetDialogue("2-D").dialogue);
             StartCoroutine(WaitUntilDialogueFinishThenLoadScene("Level_0-1"));
         }
     }
@@ -626,8 +632,9 @@ private void InitDictionary()
         if (GameManager.Instance.isWin)
         {
             PlayerPrefs.SetInt("level_4", 1);
-            // TextManager.Instance.StartDialogueSystem("<#作者>剧情4-B还未完成<finish>");
-            LoadScene("Level-0-1");
+            TextManager.Instance.StartDialogueSystem(GetDialogue("4-B").dialogue);
+
+            StartCoroutine(WaitUntilDialogueFinishThenLoadScene("Level_0-1"));
         }
     }
     #endregion
