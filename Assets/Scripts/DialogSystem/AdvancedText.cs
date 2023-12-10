@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Text.RegularExpressions;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// 文本预处理器接口，进行自定义的文本预处理，并且保存所有标签的数据
@@ -106,12 +107,14 @@ public class AdvancedText : TextMeshProUGUI
 
     private void Update()
     {
-        if(TextManager.Instance.result.Count <= 2){ //只剩最后一段
+        if (TextManager.Instance.result.Count <= 2)
+        { //只剩最后一段
             return;
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if(TextManager.Instance.result.Count == 1){ //只剩最后一段
+            if (TextManager.Instance.result.Count == 1)
+            { //只剩最后一段
                 return;
             }
             _typingIndex = m_characterCount - 1;//将索引设置为最后一个字符的索引
@@ -216,6 +219,9 @@ public class AdvancedText : TextMeshProUGUI
 #endif
                 StartCoroutine(FinishInvoke());
                 break;
+            case LabelContainer.finsihAndLoad_L:
+                StartCoroutine(FinshAndChangeInvoke());
+                break;
             default:
                 break;
         }
@@ -240,7 +246,26 @@ public class AdvancedText : TextMeshProUGUI
             yield return null;
         }
         TextManager.Instance.SetTextEmpty();//清空文本
+        //当前场景的名称
         TextManager.Instance.EndDialogueSystem();//结束对话系统
+
+    }
+
+    IEnumerator FinshAndChangeInvoke()
+    {
+        while (!Input.GetMouseButtonDown(0))
+        {
+            yield return null;
+        }
+        TextManager.Instance.SetTextEmpty();//清空文本
+        //当前场景的名称
+        string currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        if (currentSceneName == "Level_2-3" || currentSceneName == "Level_1-3" || currentSceneName == "Level_4-1" || currentSceneName == "Level_3-1")
+        {
+            SceneManager.LoadScene("Level_0-1");
+        }
+        TextManager.Instance.EndDialogueSystem();//结束对话系统
+
     }
 
     #endregion
@@ -288,4 +313,6 @@ public static class LabelContainer
     public const string break_L = "break";
     public const string rain_L = "rain";
     public const string finish_L = "finish";
+
+    public const string finsihAndLoad_L = "finishAndLoad";
 }

@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 游戏通过这个变量来判断是否胜利
     /// </summary>
-    [Tooltip("是否达成通关条件")]public bool isWin = false;
+    [Tooltip("是否达成通关条件")] public bool isWin = false;
 
     /// <summary>
     /// 当前关卡的逻辑
@@ -68,33 +68,34 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-            if (Instance == null)
-                Instance = this;
-            else
-                Destroy(this);
-            Instance.isWin = false;
-            mainCamera = Camera.main;
-            mainCamera.orthographicSize = 9f;
-            mainSceneBackground = GameObject.Find("MainSceneBackground");
-        #if UNITY_EDITOR
-            // BackgroundTest();
-        #endif
-            InitDictionary();
-            //设置音量
-            AudioListener.volume = PlayerPrefs.GetFloat("volume", 1f);//设置音量
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(this);
+        Instance.isWin = false;
+        mainCamera = Camera.main;
+        mainCamera.orthographicSize = 9f;
+        mainSceneBackground = GameObject.Find("MainSceneBackground");
+#if UNITY_EDITOR
+        // BackgroundTest();
+#endif
+        InitDictionary();
+        //设置音量
+        AudioListener.volume = PlayerPrefs.GetFloat("volume", 1f);//设置音量
+        PlayerPrefs.DeleteAll();
     }
 
-private void InitDictionary()
-{
-    Instance.dialogueDictionary = new Dictionary<string, Dialogue>();
-    foreach (var dialogue in dialogueContainer?.dialogues)
+    private void InitDictionary()
     {
-        if (!Instance.dialogueDictionary.TryAdd(dialogue.dialogueName, dialogue))
+        Instance.dialogueDictionary = new Dictionary<string, Dialogue>();
+        foreach (var dialogue in dialogueContainer?.dialogues)
         {
-            Debug.Log($"对话 {dialogue.dialogueName} 已存在");
+            if (!Instance.dialogueDictionary.TryAdd(dialogue.dialogueName, dialogue))
+            {
+                Debug.Log($"对话 {dialogue.dialogueName} 已存在");
+            }
         }
     }
-}
 
     private Dialogue GetDialogue(string dialogueName)
     {
@@ -115,7 +116,7 @@ private void InitDictionary()
         LoadCurrentLevelLogic(levelLogic);
     }
 
-    
+
     IEnumerator LoadSceneAfterAs()
     {
         yield return new WaitForSecondsRealtime(2f);
@@ -243,7 +244,6 @@ private void InitDictionary()
         {
             mainSceneBackground.GetComponent<SpriteRenderer>().sprite = mainSceneNightBackground;
             barrier.SetActive(false);
-
         }
     }
     private void Update()
@@ -256,7 +256,8 @@ private void InitDictionary()
             LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        if(Input.GetKeyDown(KeyCode.C)){
+        if (Input.GetKeyDown(KeyCode.C))
+        {
             PlayerPrefs.SetInt("GameStatus", 1);
 
             Debug.Log(PlayerPrefs.GetInt("GameStatus"));
@@ -265,7 +266,7 @@ private void InitDictionary()
         }
 
 #endif
-//用于代码测试
+        //用于代码测试
 
 
 
@@ -279,7 +280,8 @@ private void InitDictionary()
         {
             Instance.isWin = true;
         }
-        if(Input.GetKeyDown(KeyCode.P)){    //直接加载下一关
+        if (Input.GetKeyDown(KeyCode.P))
+        {    //直接加载下一关
             LoadNextScene();
         }
 
@@ -301,10 +303,21 @@ private void InitDictionary()
         LoadScene("Level_0-1");
     }
 
-    public void LoadNextScene(){
+    public void LoadNextScene()
+    {
+        Time.timeScale = 1;
         GameManager.Instance.GameManagerInit(false);
-        if(levelLogic != LevelLogic.Level_4)
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        if (SceneManager.GetActiveScene().name == "Level_4-1")
+            PlayerPrefs.SetInt("level_4", 1);
+        if(SceneManager.GetActiveScene().name == "Level_3-1")
+            PlayerPrefs.SetInt("level_3", 1);
+        if(SceneManager.GetActiveScene().name == "Level_2-3")
+            PlayerPrefs.SetInt("level_2", 1);
+        if(SceneManager.GetActiveScene().name == "Level_1-3")
+            PlayerPrefs.SetInt("level_1", 1);
+
+        if (levelLogic != LevelLogic.Level_4)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         else
             SceneManager.LoadScene("Level_0-1");
     }
@@ -320,7 +333,7 @@ private void InitDictionary()
         Debug.Log("退出游戏");
 #endif
         Application.Quit();
-        
+
     }
 
 
@@ -415,8 +428,8 @@ private void InitDictionary()
 #if UNITY_EDITOR
         Debug.Log("初始化Level_11");
 #endif
-        
-        TextManager.Instance.StartDialogueSystem(GetDialogue("1-A").dialogue);
+        if(!isResetCondition)
+            TextManager.Instance.StartDialogueSystem(GetDialogue("1-A").dialogue);
 
     }
 
@@ -425,8 +438,8 @@ private void InitDictionary()
 #if UNITY_EDITOR
         Debug.Log("初始化Level_12");
 #endif
-        
-        TextManager.Instance.StartDialogueSystem(GetDialogue("1-B").dialogue);
+        if(!isResetCondition)
+            TextManager.Instance.StartDialogueSystem(GetDialogue("1-B").dialogue);
 
     }
 
@@ -435,8 +448,8 @@ private void InitDictionary()
 #if UNITY_EDITOR
         Debug.Log("初始化Level_13");
 #endif
-        
-        TextManager.Instance.StartDialogueSystem(GetDialogue("1-C").dialogue);
+        if(!isResetCondition)
+            TextManager.Instance.StartDialogueSystem(GetDialogue("1-C").dialogue);
 
     }
 
@@ -445,7 +458,8 @@ private void InitDictionary()
 #if UNITY_EDITOR
         Debug.Log("初始化Level_21");
 #endif
-        TextManager.Instance.StartDialogueSystem(GetDialogue("2-A").dialogue);
+        if(!isResetCondition)
+            TextManager.Instance.StartDialogueSystem(GetDialogue("2-A").dialogue);
 
     }
 
@@ -454,8 +468,8 @@ private void InitDictionary()
 #if UNITY_EDITOR
         Debug.Log("初始化Level_22");
 #endif
- 
-        TextManager.Instance.StartDialogueSystem(GetDialogue("2-B").dialogue);
+        if(!isResetCondition)
+            TextManager.Instance.StartDialogueSystem(GetDialogue("2-B").dialogue);
 
     }
 
@@ -468,7 +482,8 @@ private void InitDictionary()
         {
             box.GetComponent<ObjectController>().getGoal = false; //全部设置为到达目的地，进入判定区域时设置为false，出去时设置为true
         }
-        TextManager.Instance.StartDialogueSystem(GetDialogue("2-C").dialogue);
+        if(!isResetCondition)
+            TextManager.Instance.StartDialogueSystem(GetDialogue("2-C").dialogue);
 
     }
 
@@ -477,7 +492,8 @@ private void InitDictionary()
 #if UNITY_EDITOR
         Debug.Log("初始化Level_31");
 #endif
-        TextManager.Instance.StartDialogueSystem(GetDialogue("3-A").dialogue);
+        if(!isResetCondition)
+            TextManager.Instance.StartDialogueSystem(GetDialogue("3-A").dialogue);
 
 
     }
@@ -487,7 +503,8 @@ private void InitDictionary()
 #if UNITY_EDITOR
         Debug.Log("初始化Level_32");
 #endif
-        TextManager.Instance.StartDialogueSystem(GetDialogue("3-B").dialogue);
+        if(!isResetCondition)
+            TextManager.Instance.StartDialogueSystem(GetDialogue("3-B").dialogue);
 
     }
 
@@ -505,14 +522,15 @@ private void InitDictionary()
     private void Level_4XInit()
     {
 #if UNITY_EDITOR
-        Debug.Log("初始化Level_41"+"播放剧情4-A");
+        Debug.Log("初始化Level_41" + "播放剧情4-A");
 #endif
         shadowPlayer.GetComponent<PlayerController>().isUnmoveable = true;
         foreach (var box in Instance.targetObjects)
         {
             box.GetComponent<ObjectController>().getGoal = false; //全部设置为到达目的地，进入判定区域时设置为false，出去时设置为true
         }
-        TextManager.Instance.StartDialogueSystem(GetDialogue("4-A").dialogue);
+        if(!isResetCondition)
+            TextManager.Instance.StartDialogueSystem(GetDialogue("4-A").dialogue);
 
     }
 
@@ -552,15 +570,15 @@ private void InitDictionary()
         // TextManager.Instance.StartDialogueSystem("<#作者>1-D剧情还未完成<finish>");
         LoadScene("Level_0-1");
         // StartCoroutine(WaitUntilDialogueFinishThenLoadScene("Level_0-1"));
-    
+
     }
 
     public void Level_21Win()
     {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         Debug.Log("在Levelwin中检查Instance的胜利条件" + GameManager.Instance.isWin);
         Debug.Log("检查胜利条件" + isWin);
-        #endif
+#endif
         if (Instance.isWin)
         {
             LoadScene("Level_2-2");
@@ -569,9 +587,9 @@ private void InitDictionary()
 
     public void Level_22Win()
     {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         Debug.Log("Level_22" + Instance.isWin);
-        #endif
+#endif
         if (Instance.isWin)
         {
             PlayerPrefs.SetInt("level_2", 1);
@@ -591,7 +609,6 @@ private void InitDictionary()
         }
         //TODO:进行剧情的播放
         TextManager.Instance.StartDialogueSystem(GetDialogue("2-D").dialogue);
-        StartCoroutine(WaitUntilDialogueFinishThenLoadScene("Level_0-1"));
         PlayerPrefs.SetInt("level_2", 1);
     }
 
@@ -599,12 +616,11 @@ private void InitDictionary()
     {
         if (GameManager.Instance.isWin)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             Debug.Log("level31检查胜利条件" + isWin);
-            #endif
+#endif
             PlayerPrefs.SetInt("level_3", 1);
-            TextManager.Instance.StartDialogueSystem(GetDialogue("3-B").dialogue);
-            StartCoroutine(WaitUntilDialogueFinishThenLoadScene("Level_0-1"));
+            TextManager.Instance.StartDialogueSystem(GameManager.Instance.GetDialogue("3-B").dialogue);
 
         }
     }
@@ -633,8 +649,6 @@ private void InitDictionary()
         {
             PlayerPrefs.SetInt("level_4", 1);
             TextManager.Instance.StartDialogueSystem(GetDialogue("4-B").dialogue);
-
-            StartCoroutine(WaitUntilDialogueFinishThenLoadScene("Level_0-1"));
         }
     }
     #endregion
@@ -645,10 +659,11 @@ private void InitDictionary()
     /// <returns></returns>
     private IEnumerator WaitUntilDialogueFinishThenLoadScene(string sceneName)
     {
-        while(dialoguePanel.activeSelf)
+        yield return new WaitForSecondsRealtime(2f);
+        while (dialoguePanel.activeSelf)
         {
-            yield return new WaitForSecondsRealtime(0.2f);
+            yield return null;
         }
-        LoadScene(sceneName);
+
     }
 }
